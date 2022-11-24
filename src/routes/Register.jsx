@@ -23,7 +23,7 @@ export const action = async ({ request }) => {
   }
 };
 
-function Root() {
+function Register() {
   const actionData = useActionData();
   return (
     <div className="Root">
@@ -72,4 +72,4 @@ function Root() {
   );
 }
 
-export default Root;
+export default Register;
