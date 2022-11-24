@@ -13,7 +13,7 @@ export const action = async ({ params }) => {
 
 export default function Logout() {
   return (
-    <div>
+    <div className="flex justify-end btn-primary">
       <Form method="post">
         <button type="submit">Logout</button>
       </Form>
