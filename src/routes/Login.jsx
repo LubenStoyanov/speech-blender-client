@@ -1,6 +1,6 @@
 import React from "react";
 import { Form, redirect } from "react-router-dom";
-import { login, setToken } from "../utils";
+import { login } from "../utils";
 
 export const action = async ({ request }) => {
   try {

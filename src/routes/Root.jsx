@@ -1,31 +1,26 @@
-import React, { useState } from "react";
+import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import Register from "./Register";
 import Login from "./Login";
 import BottomRegister from "../components/BottomRegister";
+import { ModalContext } from "../context/modal";
+
 export default function Home() {
-  const [showRegister, setShowRegister] = useState(false);
-  const [showLogin, setShowLogin] = useState(false);
-  const [showModal, setShowModal] = useState(true);
+  const {
+    showModal,
+    setShowModal,
+    showLogin,
+    setShowLogin,
+    showRegister,
+    setShowRegister,
+  } = useContext(ModalContext);
 
   return (
-    <div
-      style={{
-        display: "",
-        columnGap: 15,
-      }}
-      className="relative"
-    >
-      <button
-        htmlFor="my-modal-3"
-        className="btn"
-        onClick={() => setShowModal((s) => !s)}
-      >
-        open modal
-      </button>
-      <div className="fixed top-0 h-[100vh]"></div>
-
-      <input type="checkbox" id="my-modal-3" className="modal-toggle" />
+    <div className="flex flex-row justify-center">
+      <div className="basis-1/3"></div>
+      <div className="basis-1/2 min-h-[1025rem] bg-red-600 ">
+        <h1 className="flex text-center top-0 fixed">SEARCH</h1>
+      </div>
       <div className={`modal ${showModal ? "modal-open" : ""}`}>
         <div className="modal-box relative">
           <div
@@ -66,9 +61,7 @@ export default function Home() {
           ) : null}
         </div>
       </div>
-      <div className="min-h-[1025rem] bg-red-600">
-        <h1 className="text-center top-0 ">TEST</h1>
-      </div>
+      <div className="basis-1/3"></div>
       <BottomRegister />
     </div>
   );

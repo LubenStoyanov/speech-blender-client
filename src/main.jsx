@@ -9,6 +9,7 @@ import Profile from "./routes/Profile";
 import { action as logoutAction } from "./routes/Logout";
 import Favorites from "./components/Favorites";
 import Podcasts from "./components/Podcasts";
+import ModalContextProvider from "./context/modal";
 
 const router = createBrowserRouter([
   {
@@ -45,6 +46,8 @@ const router = createBrowserRouter([
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
-    <RouterProvider router={router} />
+    <ModalContextProvider>
+      <RouterProvider router={router} />
+    </ModalContextProvider>
   </React.StrictMode>
 );

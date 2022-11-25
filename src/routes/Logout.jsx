@@ -1,6 +1,6 @@
 import React from "react";
 import { Form, redirect } from "react-router-dom";
-import { logout, setToken } from "../utils";
+import { logout } from "../utils";
 
 export const action = async ({ params }) => {
   try {
