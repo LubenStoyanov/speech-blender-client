@@ -8,7 +8,7 @@ import Login, { action as loginAction } from "./routes/Login";
 import Profile from "./routes/Profile";
 import { action as logoutAction } from "./routes/Logout";
 import Favorites from "./components/Favorites";
-import Podcasts from "./components/Podcasts";
+import Podcasts, { loader as podcastLoader } from "./components/Podcasts";
 
 const router = createBrowserRouter([
   {
@@ -38,6 +38,7 @@ const router = createBrowserRouter([
       {
         path: "/profile/:username/podcasts",
         element: <Podcasts />,
+        loader: podcastLoader
       },
     ],
   },
