@@ -5,6 +5,7 @@ import { login } from "../utils";
 export const action = async ({ request }) => {
   try {
     const formData = Object.fromEntries(await request.formData());
+    console.log(formData);
     await login(formData);
     return redirect(`/profile/${formData.username}`);
   } catch (error) {
