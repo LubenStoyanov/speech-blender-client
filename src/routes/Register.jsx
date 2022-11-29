@@ -1,11 +1,4 @@
-import { useEffect } from "react";
-import {
-  Form,
-  json,
-  redirect,
-  useActionData,
-  useNavigate,
-} from "react-router-dom";
+import { Form, json, redirect, useActionData } from "react-router-dom";
 import { register } from "../utils";
 
 export const action = async ({ request }) => {
@@ -14,7 +7,7 @@ export const action = async ({ request }) => {
     const response = await register(formData);
 
     if (!response.ok) {
-      console.log(response)
+      console.log(response);
       return json({ error: "Email already exists." });
     }
     return redirect("/login");
@@ -23,8 +16,9 @@ export const action = async ({ request }) => {
   }
 };
 
-function Root() {
+function Register() {
   const actionData = useActionData();
+
   return (
     <div className="Root">
       <Form method="post" action="/register">
@@ -72,4 +66,4 @@ function Root() {
   );
 }
 
-export default Root;
+export default Register;

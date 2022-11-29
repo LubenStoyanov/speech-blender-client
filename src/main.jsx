@@ -8,7 +8,11 @@ import Login, { action as loginAction } from "./routes/Login";
 import Profile from "./routes/Profile";
 import { action as logoutAction } from "./routes/Logout";
 import Favorites from "./components/Favorites";
+
 import Podcasts, { loader as podcastLoader } from "./components/Podcasts";
+import ModalContextProvider from "./context/modal";
+import Recorder, { action as recordAction } from "./routes/Recorder";
+
 
 const router = createBrowserRouter([
   {
@@ -32,6 +36,11 @@ const router = createBrowserRouter([
     action: logoutAction,
     children: [
       {
+        path: "/profile/:username",
+        element: <Recorder />,
+        action: recordAction,
+      },
+      {
         path: "/profile/:username/favorites",
         element: <Favorites />,
       },
@@ -46,6 +55,8 @@ const router = createBrowserRouter([
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
-    <RouterProvider router={router} />
+    <ModalContextProvider>
+      <RouterProvider router={router} />
+    </ModalContextProvider>
   </React.StrictMode>
 );
