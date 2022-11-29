@@ -1,54 +1,54 @@
-import React from "react";
+import React, { useState } from "react";
 import { useReactMediaRecorder } from "react-media-recorder";
-import { useFetcher, Form, useParams } from "react-router-dom";
+import { useFetcher, Form, useParams, useNavigate } from "react-router-dom";
 import { upload } from "../utils";
-
-export const action = async ({ request }) => {
-  try {
-    const formData = await request.formData();
-    const data = Object.fromEntries(formData);
-    const audioBlob = await fetch(data.mediabloburl).then((r) => r.blob());
-
-    const audioFile = new File([audioBlob], data.title, { type: "audio/ogg" });
-    formData.append("file", audioFile, data.title);
-    console.log(audioFile);
-    // await upload({ audiofile: audioFile });
-    await upload(formData);
-  } catch (error) {
-    console.error(error);
-  }
-};
 
 export default function Recorder() {
   const { status, startRecording, stopRecording, mediaBlobUrl, clearBlobUrl } =
-    useReactMediaRecorder({ audio: "audio/ogg" });
-  const { username } = useParams();
+    useReactMediaRecorder({ audio: "audio/mpeg" });
+  const [linkAWS, setLinkAWS] = useState("");
+  // const { username } = useParams();
+  // const navigate = useNavigate();
 
-  const handleSave = () => clearBlobUrl();
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const title = e.target.title.value;
+
+    try {
+      const audioBlob = await fetch(mediaBlobUrl).then((r) => r.blob());
+
+      const audioFile = new File([audioBlob], title, {
+        type: "audio/mpeg",
+      });
+      const formData = new FormData();
+      formData.append("file", audioFile, title);
+      console.log(audioFile);
+      const link = await upload(formData);
+      setLinkAWS((l) => link);
+    } catch (error) {
+      console.error(error);
+    }
+    clearBlobUrl();
+    // navigate(`/profile/${username}`);
+  };
 
   return (
     <div>
-      <Form method="post" action={`/profile/${username}`}>
+      <form onSubmit={handleSubmit} method="post">
         <label htmlFor="title">
           Title
           <input type="text" id="title" name="title" />
         </label>
-
         <p>{status}</p>
         <audio src={mediaBlobUrl} controls />
-        <input
-          type="url"
-          name="mediabloburl"
-          value={mediaBlobUrl || ""}
-          hidden
-          readOnly
-        />
-        <button onClick={handleSave} type="submit">
-          Save
-        </button>
-      </Form>
+        <button type="submit">Save</button>
+      </form>
       <button onClick={startRecording}>Start</button>
       <button onClick={stopRecording}>Stop</button>
+      <h2>Test recording</h2>
+      <audio src={`${linkAWS}`} controls>
+        Test
+      </audio>
     </div>
   );
 }

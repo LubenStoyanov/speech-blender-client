@@ -67,7 +67,9 @@ export const upload = async (data) => {
       mode: "cors",
       credentials: "include",
     });
-    console.log(res.ok);
+    const link = await res.json();
+    console.log(link);
+    return link;
   } catch (error) {
     console.error(error);
   }

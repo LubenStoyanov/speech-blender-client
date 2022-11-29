@@ -10,7 +10,8 @@ import { action as logoutAction } from "./routes/Logout";
 import Favorites from "./components/Favorites";
 import Podcasts from "./components/Podcasts";
 import ModalContextProvider from "./context/modal";
-import Recorder, { action as recordAction } from "./routes/Recorder";
+import Recorder from "./routes/Recorder";
+import AWSContextProvider from "./context/aws";
 
 const router = createBrowserRouter([
   {
@@ -36,7 +37,7 @@ const router = createBrowserRouter([
       {
         path: "/profile/:username",
         element: <Recorder />,
-        action: recordAction,
+        // action: recordAction,
       },
       {
         path: "/profile/:username/favorites",
@@ -53,7 +54,9 @@ const router = createBrowserRouter([
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
     <ModalContextProvider>
-      <RouterProvider router={router} />
+      <AWSContextProvider>
+        <RouterProvider router={router} />
+      </AWSContextProvider>
     </ModalContextProvider>
   </React.StrictMode>
 );
