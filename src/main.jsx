@@ -8,9 +8,11 @@ import Login, { action as loginAction } from "./routes/Login";
 import Profile from "./routes/Profile";
 import { action as logoutAction } from "./routes/Logout";
 import Favorites from "./components/Favorites";
-import Podcasts from "./components/Podcasts";
+
+import Podcasts, { loader as podcastLoader } from "./components/Podcasts";
 import ModalContextProvider from "./context/modal";
 import Recorder, { action as recordAction } from "./routes/Recorder";
+
 
 const router = createBrowserRouter([
   {
@@ -45,6 +47,7 @@ const router = createBrowserRouter([
       {
         path: "/profile/:username/podcasts",
         element: <Podcasts />,
+        loader: podcastLoader
       },
     ],
   },

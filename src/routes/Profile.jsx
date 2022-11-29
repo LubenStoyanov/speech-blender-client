@@ -14,7 +14,10 @@ export default function Profile() {
   })();
 
   return (
-    <div>
+
+    <div className="m-4">
+
+  
       <h1>{username}</h1>
       <Link to={`/profile/${username}/favorites`}>
         <button type="submit">Favorites</button>
@@ -24,7 +27,27 @@ export default function Profile() {
       </Link>
       {/* <Recorder /> */}
       <Outlet />
+
       <Logout username={username} />
+      <div className="avatar flex justify-center">
+        <div className="w-24 rounded">
+          <img src="https://placeimg.com/192/192/people" />
+        </div>
+      </div>
+      <h1 className="text-2xl text-center m-4">{username}</h1>
+      <div className="flex justify-center space-x-4">
+        <Link to={`/profile/${username}/favorites`}>
+          <button className="btn btn-primary" type="submit">
+            Favorites
+          </button>
+        </Link>
+        <Link to={`/profile/${username}/podcasts`}>
+          <button className="btn btn-primary" type="submit">
+            Podcasts
+          </button>
+        </Link>
+      </div>
+      <Outlet />
     </div>
   );
 }
