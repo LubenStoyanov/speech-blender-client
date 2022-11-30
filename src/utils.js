@@ -15,7 +15,7 @@ export const checkToken = async () => {
 
 export const login = async (data) => {
   try {
-    await fetch("http://localhost:8080/login", {
+    const res = await fetch("http://localhost:8080/login", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -24,18 +24,21 @@ export const login = async (data) => {
       credentials: "include",
       body: JSON.stringify(data),
     });
+    return res;
   } catch (error) {
     console.error(error);
   }
 };
 
-export const logout = async (data) => {
+export const logout = async () => {
+  console.log("frontend logout");
   try {
-    await fetch("http://localhost:8080/logout", {
+    const res = await fetch("http://localhost:8080/logout", {
       method: "POST",
       mode: "cors",
       credentials: "include",
     });
+    return res.ok;
   } catch (error) {
     console.error(error);
   }

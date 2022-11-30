@@ -3,27 +3,22 @@ import axios from "axios";
 import { useLoaderData } from "react-router-dom";
 
 export async function loader() {
-  const getPodcast = await axios
+  const podcasts = await axios
     .get("http://localhost:8080/podcast/all")
     .then((response) => response.data);
-  return { getPodcast };
+  return { podcasts };
 }
 
-export const loader = async ({ params }) => {
-  try {
-  } catch (error) {
-    console.error(error);
-  }
-};
-
 export default function Podcasts() {
-  const { getPodcast } = useLoaderData();
+  const { podcasts } = useLoaderData();
 
   return (
-    <>
-      {getPodcast.map((p) => (
-        <div>{p.title}</div>
+    <div>
+      {podcasts.map((p) => (
+        <audio src={p.url} key={p.publicId} controls>
+          {p.title}
+        </audio>
       ))}
-    </>
+    </div>
   );
 }

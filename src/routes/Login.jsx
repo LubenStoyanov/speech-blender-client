@@ -1,12 +1,17 @@
 import React from "react";
-import { Form, redirect } from "react-router-dom";
+import { Form, json, redirect, useActionData } from "react-router-dom";
 import { login } from "../utils";
 
 export const action = async ({ request }) => {
   try {
     const formData = Object.fromEntries(await request.formData());
-    console.log(formData);
-    await login(formData);
+    const res = await login(formData);
+
+    if (!res.ok)
+      return json({
+        error: res.status === 401 ? "Wrong Password" : "Email doesn't exist",
+      });
+
     return redirect(`/profile/${formData.username}`);
   } catch (error) {
     console.error(error);
@@ -14,6 +19,8 @@ export const action = async ({ request }) => {
 };
 
 export default function Login() {
+  const error = useActionData();
+  console.log(error);
   return (
     <div className="App">
       <Form method="post" action="/login">

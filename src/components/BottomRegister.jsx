@@ -4,7 +4,6 @@ import { ModalContext } from "../context/modal";
 export default function BottomRegister() {
   const { showModal, setShowModal, setShowLogin, setShowRegister } =
     useContext(ModalContext);
-  console.log(showModal);
   return (
     <footer
       className={`footer justify-end p-4 bg-neutral text-neutral-content fixed bottom-0 ${

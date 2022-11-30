@@ -1,13 +1,13 @@
 import { createContext, useState } from "react";
 
-export const ModalContext = createContext(); // Consumer
+export const AWSContext = createContext(); // Consumer
 
-const ModalContextProvider = (props) => {
+const AWSContextProvider = (props) => {
   const [recordingLink, setRecordingLink] = useState("");
   const [podcastLink, setPodcastLink] = useState("");
 
   return (
-    <ModalContext.Provider
+    <AWSContext.Provider
       value={{
         recordingLink,
         setRecordingLink,
@@ -16,7 +16,7 @@ const ModalContextProvider = (props) => {
       }}
     >
       {props.children}
-    </ModalContext.Provider>
+    </AWSContext.Provider>
   );
 };
-export default ModalContextProvider; // Provider
+export default AWSContextProvider; // Provider

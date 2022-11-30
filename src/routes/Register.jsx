@@ -7,7 +7,6 @@ export const action = async ({ request }) => {
     const response = await register(formData);
 
     if (!response.ok) {
-      console.log(response);
       return json({ error: "Email already exists." });
     }
     return redirect("/login");
