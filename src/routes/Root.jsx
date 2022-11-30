@@ -19,7 +19,7 @@ export default function Home() {
     <div className="flex flex-row justify-center">
       <div className="basis-1/3"></div>
       <div className="basis-1/2 min-h-[1025rem] bg-red-600 ">
-        <h1 className="flex text-center top-0 fixed">SEARCH</h1>
+        <h1 className="flex text-center top-0 fixed">Welcome to Speech Blender</h1>
       </div>
       <div className={`modal ${showModal ? "modal-open" : ""}`}>
         <div className="modal-box relative">
