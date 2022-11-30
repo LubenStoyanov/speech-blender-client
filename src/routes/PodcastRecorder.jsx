@@ -1,7 +1,7 @@
 import React from "react";
 import { useReactMediaRecorder } from "react-media-recorder";
 import { Form, json } from "react-router-dom";
-import { upload } from "../utils";
+import { uploadPodcast } from "../utils";
 
 export const action = async ({ request }) => {
   const formData = await request.formData();
@@ -15,7 +15,7 @@ export const action = async ({ request }) => {
     });
 
     formData.append("file", audioFile, title);
-    await upload(formData);
+    await uploadPodcast(formData);
 
     return json({ success: true });
   } catch (error) {

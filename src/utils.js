@@ -60,12 +60,10 @@ export const register = async (data) => {
   }
 };
 
-export const upload = async (data) => {
+export const uploadClip = async (data) => {
   try {
-    const res = await fetch("http://localhost:8080/upload", {
+    const res = await fetch("http://localhost:8080/uploadClip", {
       method: "POST",
-      // headers: { "Content-Type": "application/json" },
-      // body: JSON.stringify(data),
       body: data,
       mode: "cors",
       credentials: "include",
@@ -78,8 +76,18 @@ export const upload = async (data) => {
   }
 };
 
-// export const upload = async (data) => {
-//   await axios.post("http://localhost:8080/upload", data, {
-//     withCredentials: true,
-//   });
+// export const uploadPodcast = async (data) => {
+//   try {
+//     const res = await fetch("http://localhost:8080/uploadPodcast", {
+//       method: "POST",
+//       body: data,
+//       mode: "cors",
+//       credentials: "include",
+//     });
+//     const link = await res.json();
+//     console.log(link);
+//     return link;
+//   } catch (error) {
+//     console.error(error);
+//   }
 // };

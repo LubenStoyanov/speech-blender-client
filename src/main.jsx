@@ -11,7 +11,7 @@ import Logout, { action as logoutAction } from "./routes/Logout";
 
 import Podcasts, { loader as podcastLoader } from "./components/Podcasts";
 import ModalContextProvider from "./context/modal";
-import Recorder, { action as recordAction } from "./routes/Recorder";
+import Recorder, { action as recordAction } from "./routes/ClipsRecorder";
 import AWSContextProvider from "./context/aws";
 import Users, { loader as usersLoader } from "./routes/Users";
 
