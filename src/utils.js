@@ -68,6 +68,26 @@ export const uploadClip = async (data) => {
       mode: "cors",
       credentials: "include",
     });
+    const linkArray = await res.json();
+    console.log(linkArray);
+    return linkArray;
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+export const createPodcast = async (data) => {
+  console.log(data);
+  try {
+    const res = await fetch("http://localhost:8080/podcast/create-podcast", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(data),
+      mode: "cors",
+      credentials: "include",
+    });
     const link = await res.json();
     console.log(link);
     return link;
@@ -76,18 +96,13 @@ export const uploadClip = async (data) => {
   }
 };
 
-// export const uploadPodcast = async (data) => {
-//   try {
-//     const res = await fetch("http://localhost:8080/uploadPodcast", {
-//       method: "POST",
-//       body: data,
-//       mode: "cors",
-//       credentials: "include",
-//     });
-//     const link = await res.json();
-//     console.log(link);
-//     return link;
-//   } catch (error) {
-//     console.error(error);
-//   }
-// };
+export const getPodcasts = async (podcastId) => {
+  try {
+    const podcastRecordings = await fetch(
+      `http://localhost:8080/recording/all/${podcastId}`
+    );
+    return podcastRecordings;
+  } catch (error) {
+    console.error(error);
+  }
+};
