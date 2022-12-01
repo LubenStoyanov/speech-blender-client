@@ -18,6 +18,7 @@ export const checkToken = async () => {
   }
 };
 
+// trying netlify
 export const login = async (data) => {
   try {
     const res = await fetch(
