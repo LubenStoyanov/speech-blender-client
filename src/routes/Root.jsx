@@ -1,3 +1,6 @@
+import logoDark from "../../logo-dark.png";
+// const imgUrl = new URL("./img.png", import.meta.url).href;
+
 import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import Register from "./Register";
@@ -31,7 +34,7 @@ export default function Home() {
             ✕
           </div>
           <figure>
-            <img src="logo-dark.png" alt="logo dark" />
+            <img src={logoDark} alt="logo dark" />
           </figure>
           {showRegister && <Register />}
           {showLogin && <Login />}
