@@ -31,6 +31,7 @@ export const loader = async ({ params }) => {
     const { podcastId } = params;
     const res = await getPodcasts(podcastId);
     const podcastRecordings = await res.json();
+    console.log("loader", podcastRecordings);
     return podcastRecordings;
   } catch (error) {
     console.error(error);
@@ -47,8 +48,10 @@ export default function Recorder() {
   } = useReactMediaRecorder({ audio: "audio/mp3" });
 
   const podcastRecordings = useLoaderData() || [];
+  console.log("podcastRecordings", podcastRecordings);
 
   const playPodcast = (_, i = 1) => {
+    console.trace();
     if (i === podcastRecordings.length) return;
     const audio = new Audio(podcastRecordings[i].url);
     audio.play();

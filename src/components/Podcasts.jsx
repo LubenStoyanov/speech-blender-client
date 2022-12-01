@@ -11,8 +11,10 @@ import { createPodcast } from "../utils";
 
 export async function loader() {
   const podcasts = await axios
-    .get("https://speech-blender-backend-production.up.railway.app/podcast/all")
+    // .get("https://speech-blender-backend-production.up.railway.app/podcast/all")
+    .get("http://localhost:8080/podcast/all")
     .then((response) => response.data);
+  console.log(podcasts);
   return { podcasts };
 }
 

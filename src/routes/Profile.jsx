@@ -8,14 +8,8 @@ export default function Profile() {
   const navigate = useNavigate();
 
   (async () => {
-    try {
-      console.log("checktoken");
-      const verification = await checkToken();
-      console.log(verification);
-      if (!verification) return navigate("/login");
-    } catch (error) {
-      console.error(error);
-    }
+    const verification = await checkToken();
+    if (!verification) return navigate("/login");
   })();
 
   return (
