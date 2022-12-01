@@ -9,9 +9,15 @@ import Profile from "./routes/Profile";
 import Favorites from "./components/Favorites";
 import Logout, { action as logoutAction } from "./routes/Logout";
 
-import Podcasts, { loader as podcastLoader } from "./components/Podcasts";
+import Podcasts, {
+  loader as podcastLoader,
+  action as podcastAction,
+} from "./components/Podcasts";
 import ModalContextProvider from "./context/modal";
-import Recorder, { action as recordAction } from "./routes/ClipsRecorder";
+import Recorder, {
+  action as recordAction,
+  loader as recordingsLoader,
+} from "./routes/ClipsRecorder";
 import AWSContextProvider from "./context/aws";
 import Users, { loader as usersLoader } from "./routes/Users";
 
@@ -41,9 +47,10 @@ const router = createBrowserRouter([
     element: <Profile />,
     children: [
       {
-        path: "/profile/:username/recorder",
+        path: "/profile/:username/recorder/:podcastId",
         element: <Recorder />,
         action: recordAction,
+        loader: recordingsLoader,
       },
       {
         path: "/profile/:username/favorites",
@@ -53,6 +60,7 @@ const router = createBrowserRouter([
         path: "/profile/:username/podcasts",
         element: <Podcasts />,
         loader: podcastLoader,
+        action: podcastAction,
       },
       {
         path: "/profile/:username/users",
@@ -64,11 +72,11 @@ const router = createBrowserRouter([
 ]);
 
 ReactDOM.createRoot(document.getElementById("root")).render(
-  <React.StrictMode>
-    <ModalContextProvider>
-      <AWSContextProvider>
-        <RouterProvider router={router} />
-      </AWSContextProvider>
-    </ModalContextProvider>
-  </React.StrictMode>
+  // <React.StrictMode>
+  <ModalContextProvider>
+    <AWSContextProvider>
+      <RouterProvider router={router} />
+    </AWSContextProvider>
+  </ModalContextProvider>
+  // </React.StrictMode>
 );

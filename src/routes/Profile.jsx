@@ -38,11 +38,6 @@ export default function Profile() {
               Users
             </button>
           </Link>
-          <Link to={`/profile/${username}/recorder`}>
-            <button className="btn btn-primary" type="submit">
-              + Create New Podcast
-            </button>
-          </Link>
         </div>
         <Outlet />
       </div>
