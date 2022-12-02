@@ -18,8 +18,8 @@ import {
 
 export async function loader() {
   const podcasts = await axios
-    // .get("https://speech-blender-backend-production.up.railway.app/podcast/all")
-    .get("http://localhost:8080/podcast/all")
+    .get("https://speech-blender-backend-production.up.railway.app/podcast/all")
+    // .get("http://localhost:8080/podcast/all")
     .then((response) => response.data);
   // const podcastRec = await podcasts.map(async (p) => {
   //   const recordings = await getPodcasts(p._id);
