@@ -66,8 +66,8 @@ export default function Profile() {
   // }, []);
   (async () => {
     const verification = await checkToken();
-    // if (!verification) return navigate("/login");
-    if (!verification) return <Navigate to="/login" />;
+    if (!verification) return navigate("/login");
+    // if (!verification) return <Navigate to="/login" />;
   })();
 
   return (
