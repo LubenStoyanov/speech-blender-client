@@ -22,9 +22,9 @@ function Register() {
     <div className="Root">
       <Form method="post" action="/register">
         <fieldset
-          style={{ display: "flex", flexDirection: "column", rowGap: 10 }}
+          className="flex flex-col justify-center m-5"
         >
-          <label htmlFor="username">username</label>
+          <label htmlFor="username">Username</label>
           <input
             type="text"
             name="username"
@@ -33,7 +33,7 @@ function Register() {
             required
             defaultValue="asd"
           />
-          <label htmlFor="email">email</label>
+          <label htmlFor="email">Email</label>
           <input
             type="email"
             name="email"
@@ -45,7 +45,7 @@ function Register() {
           {actionData?.error ? (
             <p style={{ color: "red" }}>{actionData.error}</p>
           ) : null}
-          <label htmlFor="password">password</label>
+          <label htmlFor="password">Password</label>
           <input
             type="password"
             name="password"
@@ -56,12 +56,12 @@ function Register() {
             minLength={8}
             onInvalid={() => "Please enter minium 8 chracters"}
           />
-          <button type="submit" style={{ backgroundColor: "lightblue" }}>
-            Register
+          <button type="submit" className="btn border-4 rounded-md border-slate-100 m-10 p-2 w-32">
+            Sign Up
           </button>
         </fieldset>
       </Form>
-    </div>
+      </div>
   );
 }
 

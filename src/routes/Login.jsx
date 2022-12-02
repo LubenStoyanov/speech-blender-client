@@ -25,9 +25,9 @@ export default function Login() {
     <div className="App">
       <Form method="post" action="/login">
         <fieldset
-          style={{ display: "flex", flexDirection: "column", rowGap: 10 }}
+          className="flex flex-col justify-center m-5"
         >
-          <label htmlFor="username">username</label>
+          <label htmlFor="username">Username</label>
           <input
             type="text"
             name="username"
@@ -35,7 +35,7 @@ export default function Login() {
             id="username"
             required
           />
-          <label htmlFor="password">password</label>
+          <label htmlFor="password">Password</label>
           <input
             type="password"
             name="password"
@@ -43,7 +43,7 @@ export default function Login() {
             id="password"
             required
           />
-          <button type="submit" style={{ backgroundColor: "lightblue" }}>
+          <button type="submit" className="btn border-4 rounded-md border-slate-100 m-10 p-2 w-32">
             Login
           </button>
         </fieldset>

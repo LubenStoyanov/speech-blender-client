@@ -53,7 +53,10 @@ export default function Podcasts() {
 
   return (
     <div>
-      <label htmlFor="my-modal-3" className="btn">
+      <label
+        htmlFor="my-modal-3"
+        className="btn border-4 rounded-md border-slate-100 m-2 p-2 w-32"
+      >
         Create New Podcast
       </label>
 
@@ -83,7 +86,9 @@ export default function Podcasts() {
           </audio> */}
           <Link to={`/profile/${username}/recorder/${p._id}`}>
             <h2>{p.title}</h2>
-            <button className="btn btn-primary">Go record</button>
+            <button className="btn border-4 rounded-md border-slate-100 m-2 p-2 w-32">
+              Go record
+            </button>
           </Link>
           <button onClick={handleDelete} id={p._id} className="btn btn-primary">
             DELETE
