@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Link, Outlet, useNavigate, useParams } from "react-router-dom";
 import { checkToken } from "../utils";
 import Logout from "./Logout";
@@ -7,10 +7,12 @@ export default function Profile() {
   const { username } = useParams();
   const navigate = useNavigate();
 
-  (async () => {
-    const verification = await checkToken();
-    if (!verification) return navigate("/login");
-  })();
+  useEffect(() => {
+    (async () => {
+      const verification = await checkToken();
+      if (!verification) return navigate("/login");
+    })();
+  }, []);
 
   return (
     <>
