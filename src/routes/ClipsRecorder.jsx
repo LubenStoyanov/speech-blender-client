@@ -18,7 +18,6 @@ export const action = async ({ request, params }) => {
     newFormData.append("file", audioFile);
     newFormData.append("podcastId", podcastId);
     const podcast = await uploadClip(newFormData);
-    console.log(podcast);
 
     return podcast;
   } catch (error) {

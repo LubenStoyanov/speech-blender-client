@@ -115,9 +115,9 @@ export const createPodcast = async (data) => {
         credentials: "include",
       }
     );
-    const link = await res.json();
-    console.log(link);
-    return link;
+    const podcastId = await res.json();
+    console.log(podcastId);
+    return podcastId;
   } catch (error) {
     console.error(error);
   }
@@ -130,6 +130,18 @@ export const getPodcasts = async (podcastId) => {
       `http://localhost:8080/recording/all/${podcastId}`
     );
     return podcastRecordings;
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+export const deletePodcast = async (podcastId) => {
+  try {
+    await fetch(`http://localhost:8080/podcast/delete/${podcastId}`, {
+      method: "DELETE",
+      mode: "cors",
+      credentials: "include",
+    });
   } catch (error) {
     console.error(error);
   }

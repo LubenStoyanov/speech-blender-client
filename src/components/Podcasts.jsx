@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import axios from "axios";
 import {
   useLoaderData,
@@ -6,30 +6,50 @@ import {
   useParams,
   Form,
   redirect,
+  useFetcher,
+  useNavigate,
 } from "react-router-dom";
-import { createPodcast } from "../utils";
+import { createPodcast, getPodcasts, deletePodcast } from "../utils";
 
 export async function loader() {
   const podcasts = await axios
     // .get("https://speech-blender-backend-production.up.railway.app/podcast/all")
     .get("http://localhost:8080/podcast/all")
     .then((response) => response.data);
-  console.log(podcasts);
+  // const podcastRec = await podcasts.map(async (p) => {
+  //   const recordings = await getPodcasts(p._id);
+  //   return { ...p, recordings: recordings };
+  // });
   return { podcasts };
 }
 
-export const action = async ({ request }) => {
+export const action = async ({ request, params }) => {
+  const { username } = params;
   try {
     const formData = await request.formData();
     const data = Object.fromEntries(formData);
     const podcastId = await createPodcast(data);
     return redirect(`/profile/${username}/recorder/${podcastId}`);
-  } catch (error) {}
+  } catch (error) {
+    console.error(error);
+  }
 };
 
 export default function Podcasts() {
   const { username } = useParams();
   const { podcasts } = useLoaderData();
+  const navigate = useNavigate();
+
+  const handleDelete = async (e) => {
+    console.log(e.target.id);
+    const podcastId = e.target.id;
+    try {
+      await deletePodcast(podcastId);
+    } catch (error) {
+      console.error(error);
+    }
+    return navigate(`/profile/${username}/podcasts`);
+  };
 
   return (
     <div>
@@ -58,12 +78,16 @@ export default function Podcasts() {
 
       {podcasts.map((p) => (
         <>
-          <audio src={p.url} key={p.publicId} controls>
+          {/* <audio src={p.url} key={p.publicId} controls>
             {p.title}
-          </audio>
+          </audio> */}
           <Link to={`/profile/${username}/recorder/${p._id}`}>
+            <h2>{p.title}</h2>
             <button className="btn btn-primary">Go record</button>
           </Link>
+          <button onClick={handleDelete} id={p._id} className="btn btn-primary">
+            DELETE
+          </button>
         </>
       ))}
     </div>
