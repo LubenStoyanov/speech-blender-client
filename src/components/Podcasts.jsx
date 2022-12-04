@@ -29,7 +29,8 @@ export const action = async ({ request, params }) => {
     const formData = await request.formData();
     const data = Object.fromEntries(formData);
     const podcastId = await createPodcast(data);
-    return redirect(`/profile/${username}/recorder/${podcastId}`);
+    console.log("podID", podcastId);
+    return redirect(`/profile/${username}/recorder/${podcastId.podcastId}`);
   } catch (error) {
     console.error(error);
   }
