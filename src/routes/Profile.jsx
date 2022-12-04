@@ -42,6 +42,14 @@ export default function Profile() {
             >
               Podcasts
             </button>
+          </Link>{" "}
+          <Link to={`/profile/${username}/user-podcasts`}>
+            <button
+              className="btn border-4 rounded-md border-slate-100 m-2 p-2 w-32"
+              type="submit"
+            >
+              Your Podcasts
+            </button>
           </Link>
         </div>
         <Outlet />

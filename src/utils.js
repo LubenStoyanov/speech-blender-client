@@ -146,3 +146,51 @@ export const deletePodcast = async (podcastId) => {
     console.error(error);
   }
 };
+
+export const likePodcast = async (podcastId) => {
+  try {
+    await fetch(`http://localhost:8080/favorite/create-favorite`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      mode: "cors",
+      body: JSON.stringify({ podcastId: podcastId }),
+      credentials: "include",
+    });
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+export const getFavorites = async () => {
+  try {
+    const res = await fetch(`http://localhost:8080/favorite/all`, {
+      method: "GET",
+      mode: "cors",
+      credentials: "include",
+    });
+    const favorites = await res.json();
+    console.log("fav utils", favorites);
+    return favorites;
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+export const addUser = async (data) => {
+  try {
+    const res = await fetch("http://localhost:8080/collaborater/add", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(data),
+      mode: "cors",
+      credentials: "include",
+    });
+    return res.ok;
+  } catch (error) {
+    console.error(error);
+  }
+};

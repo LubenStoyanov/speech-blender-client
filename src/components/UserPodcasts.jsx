@@ -17,15 +17,23 @@ import {
 } from "../utils";
 
 export async function loader() {
-  const podcasts = await axios
-    // .get("https://speech-blender-backend-production.up.railway.app/podcast/all")
-    .get("http://localhost:8080/podcast/all")
-    .then((response) => response.data);
-  // const podcastRec = await podcasts.map(async (p) => {
-  //   const recordings = await getPodcasts(p._id);
-  //   return { ...p, recordings: recordings };
-  // });
-  return { podcasts };
+  try {
+    const res = await fetch(
+      // .get("https://speech-blender-backend-production.up.railway.app/podcast/user")
+      "http://localhost:8080/podcast/user",
+      {
+        method: "GET",
+        mode: "cors",
+        credentials: "include",
+      }
+    );
+
+    const podcasts = await res.json();
+    console.log(podcasts);
+    return { podcasts };
+  } catch (error) {
+    console.error(error);
+  }
 }
 
 export const action = async ({ request, params }) => {
@@ -41,7 +49,7 @@ export const action = async ({ request, params }) => {
   }
 };
 
-export default function Podcasts() {
+export default function UserPodcasts() {
   const { username } = useParams();
   const { podcasts } = useLoaderData();
   const navigate = useNavigate();
@@ -95,7 +103,7 @@ export default function Podcasts() {
       </div>
 
       {podcasts.map((p) => (
-        <div key={p._id}>
+        <>
           {/* <audio src={p.url} key={p.publicId} controls>
             {p.title}
           </audio> */}
@@ -106,21 +114,13 @@ export default function Podcasts() {
               Go record
             </button>
           </Link>
-          <Link to={`/profile/${username}/users/${p._id}`}>
-            <button
-              className="btn border-4 rounded-md border-slate-100 m-2 p-2 w-32"
-              type="submit"
-            >
-              Members
-            </button>
-          </Link>
           <button onClick={handleDelete} id={p._id} className="btn btn-primary">
             DELETE
           </button>
           <button className="btn btn-primary" id={p._id} onClick={handleLike}>
             Like
           </button>
-        </div>
+        </>
       ))}
     </div>
   );

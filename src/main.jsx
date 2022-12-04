@@ -6,20 +6,27 @@ import Root from "./routes/Root";
 import Register, { action as registerAction } from "./routes/Register";
 import Login, { action as loginAction } from "./routes/Login";
 import Profile from "./routes/Profile";
-import Favorites from "./components/Favorites";
+import Favorites, { loader as favoirtesLoader } from "./components/Favorites";
 import Logout, { action as logoutAction } from "./routes/Logout";
 
 import Podcasts, {
   loader as podcastLoader,
   action as podcastAction,
 } from "./components/Podcasts";
+import UserPodcasts, {
+  loader as userPodcastLoader,
+  action as userPodcastAction,
+} from "./components/UserPodcasts";
 import ModalContextProvider from "./context/modal";
 import Recorder, {
   action as recordAction,
   loader as recordingsLoader,
 } from "./routes/ClipsRecorder";
 import AWSContextProvider from "./context/aws";
-import Users, { loader as usersLoader } from "./routes/Users";
+import Users, {
+  loader as usersLoader,
+  action as collabAction,
+} from "./routes/Users";
 
 const router = createBrowserRouter([
   {
@@ -55,6 +62,7 @@ const router = createBrowserRouter([
       {
         path: "/profile/:username/favorites",
         element: <Favorites />,
+        loader: favoirtesLoader,
       },
       {
         path: "/profile/:username/podcasts",
@@ -63,9 +71,16 @@ const router = createBrowserRouter([
         action: podcastAction,
       },
       {
-        path: "/profile/:username/users",
+        path: "/profile/:username/user-podcasts",
+        element: <UserPodcasts />,
+        loader: userPodcastLoader,
+        action: userPodcastAction,
+      },
+      {
+        path: "/profile/:username/users/:podcastId",
         element: <Users />,
         loader: usersLoader,
+        action: collabAction,
       },
     ],
   },
