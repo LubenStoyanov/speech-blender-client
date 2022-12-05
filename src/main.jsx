@@ -2,10 +2,13 @@ import React from "react";
 import "./index.css";
 import ReactDOM from "react-dom/client";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import Root from "./routes/Root";
+import Home, { loader as homeFeedLoader } from "./routes/Root";
 import Register, { action as registerAction } from "./routes/Register";
 import Login, { action as loginAction } from "./routes/Login";
-import Profile from "./routes/Profile";
+import Profile, {
+  loader as avatarLoader,
+  action as avatarAction,
+} from "./routes/Profile";
 import Favorites, { loader as favoirtesLoader } from "./components/Favorites";
 import Logout, { action as logoutAction } from "./routes/Logout";
 
@@ -31,7 +34,8 @@ import Users, {
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <Root />,
+    element: <Home />,
+    loader: homeFeedLoader,
   },
   {
     path: "/register",
@@ -52,6 +56,8 @@ const router = createBrowserRouter([
   {
     path: "/profile/:username",
     element: <Profile />,
+    action: avatarAction,
+    loader: avatarLoader,
     children: [
       {
         path: "/profile/:username/recorder/:podcastId",

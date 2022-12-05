@@ -1,6 +1,15 @@
 import React from "react";
-import { Link, Outlet, useNavigate, useParams } from "react-router-dom";
-import { checkToken } from "../utils";
+import {
+  Link,
+  Outlet,
+  useNavigate,
+  useParams,
+  Form,
+  useActionData,
+  useLoaderData,
+  redirect,
+} from "react-router-dom";
+import { checkToken, uploadAvatar } from "../utils";
 import Logout from "./Logout";
 import Navbar from "../components/Navbar";
 import { CiEdit } from "react-icons/ci";
@@ -8,23 +17,45 @@ import { useState } from "react";
 
 export const action = async ({ request }) => {
   const formData = await request.formData();
-
+  const newFormData = new FormData();
+  const avatarFile = formData.get("file");
+  newFormData.append("file", avatarFile);
+  console.log("avatar", avatarFile.name);
+  const data = Object.fromEntries(formData);
+  console.log(data.file);
   try {
-    await uploadAvatar();
-  } catch (error) {}
+    const avatarUrl = await uploadAvatar(newFormData);
+    console.log(avatarUrl);
+    return avatarUrl;
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+export const loader = async () => {
+  try {
+    const res = await fetch("http://localhost:8080/avatar-image", {
+      method: "GET",
+      mode: "cors",
+      credentials: "include",
+    });
+    const url = await res.json();
+    console.log(url);
+    return url;
+  } catch (error) {
+    console.error(error);
+  }
 };
 
 export default function Profile() {
   const { username } = useParams();
   const navigate = useNavigate();
   const [showModal, setShowModal] = useState(false);
-
+  const url = useLoaderData();
   (async () => {
     const verification = await checkToken();
     if (!verification) return navigate("/login");
   })();
-
-  const handleClick = () => setShowModal((s) => true);
 
   return (
     <>
@@ -33,27 +64,14 @@ export default function Profile() {
         <Logout />
       </div>
       <div className="flex flex-col m-4">
-        <label
-          htmlFor="avatar"
-          className="border-1 inline-block p-12 cursor-pointer text-3xl"
-        >
-          <div className="avatar flex justify-center relative">
-            <div className="w-24 rounded-full relative">
-              <img src="/public/avatar_pholder.png" />
-            </div>
-            <button onClick={handleClick}>
-              <CiEdit className="absolute left-[52%] top-[-14px]" />
-            </button>
-
-            {/* <input
-              className="input-file"
-              type="file"
-              name="avatar"
-              id="avatar"
-              style={{ display: "none" }}
-            /> */}
+        <div className="avatar flex justify-center relative">
+          <div className="w-24 rounded-full relative">
+            <img src={url?.url || "/public/avatar_pholder.png"} />
           </div>
-        </label>
+          <button onClick={() => setShowModal((s) => true)}>
+            <CiEdit className="absolute left-[52%] top-[-14px]" />
+          </button>
+        </div>
         <h1 className="text-3xl text-center m-4">{username} is in da house!</h1>
         <div className="flex justify-center space-x-4">
           <Link to={`/profile/${username}/favorites`}>
@@ -81,27 +99,35 @@ export default function Profile() {
             </button>
           </Link>
         </div>
-        {/* The button to open modal */}
-        <label htmlFor="my-modal-6" className="btn">
-          open modal
-        </label>
 
-        {/* Put this part before </body> tag */}
-        {/* <input type="checkbox" id="my-modal-6" className="modal-toggle" /> */}
-        <div className="modal modal-bottom sm:modal-middle">
+        <input type="checkbox" id="my-modal-6" className="modal-toggle" />
+        <div
+          className={`modal modal-bottom sm:modal-middle ${
+            showModal ? "modal-open" : ""
+          }`}
+        >
           <div className="modal-box">
-            <h3 className="font-bold text-lg">
-              Congratulations random Internet user!
-            </h3>
-            <p className="py-4">
-              You've been selected for a chance to get one year of subscription
-              to use Wikipedia for free!
-            </p>
-            <div className="modal-action">
-              <label htmlFor="my-modal-6" className="btn">
-                Yay!
-              </label>
+            <div
+              htmlFor="my-modal-3"
+              className="btn btn-sm border-4 absolute right-2 top-2 "
+              onClick={() => setShowModal((s) => false)}
+            >
+              ✕
             </div>
+            <Form method="post" encType="multipart/form-data">
+              <input
+                className="input-file"
+                type="file"
+                name="file"
+                id="avatar"
+                accept="image/png"
+                required
+                style={{ display: showModal ? "" : "none" }}
+              />
+              <button className="btn btn-primary" type="submit">
+                Upload
+              </button>
+            </Form>
           </div>
         </div>
         <Outlet />
