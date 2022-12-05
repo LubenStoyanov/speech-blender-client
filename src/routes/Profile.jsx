@@ -58,7 +58,7 @@ export default function Profile() {
         <div className="flex justify-center space-x-4">
           <Link to={`/profile/${username}/favorites`}>
             <button
-              className="btn border-4 rounded-md border-slate-100 m-2 p-2 w-32"
+              className="btn border-4 rounded-md border-slate-100 m-2 p-2"
               type="submit"
             >
               Favorites
@@ -66,7 +66,7 @@ export default function Profile() {
           </Link>
           <Link to={`/profile/${username}/podcasts`}>
             <button
-              className="btn border-4 rounded-md border-slate-100 m-2 p-2 w-32"
+              className="btn border-4 rounded-md border-slate-100 m-2 p-2"
               type="submit"
             >
               Podcasts
@@ -74,7 +74,7 @@ export default function Profile() {
           </Link>
           <Link to={`/profile/${username}/user-podcasts`}>
             <button
-              className="btn border-4 rounded-md border-slate-100 m-2 p-2 w-32"
+              className="btn border-4 rounded-md border-slate-100 m-2 p-2"
               type="submit"
             >
               Your Podcasts

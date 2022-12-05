@@ -78,7 +78,7 @@ export default function UserPodcasts() {
     <div>
       <label
         htmlFor="my-modal-3"
-        className="btn border-4 rounded-md border-slate-100 m-2 p-2 w-32"
+        className="btn border-4 rounded-md border-slate-100 m-2 p-2"
       >
         Create New Podcast
       </label>
@@ -93,9 +93,9 @@ export default function UserPodcasts() {
             ✕
           </label>
           <Form method="post" action={`/profile/${username}/podcasts`}>
-            <input type="text" name="title" />
-            <textarea type="text" name="description"></textarea>
-            <button className="btn btn-primary" type="submit">
+            <input type="text" placeholder="title" name="title" />
+            <textarea type="text" placeholder="title" name="description"></textarea>
+            <button className="btn border-4 rounded-md border-slate-100 m-2 p-2" type="submit">
               Save
             </button>
           </Form>
@@ -110,7 +110,7 @@ export default function UserPodcasts() {
           <Link to={`/profile/${username}/recorder/${p._id}`}>
             <h2>{p.title}</h2>
             <p>{p.description}</p>
-            <button className="btn border-4 rounded-md border-slate-100 m-2 p-2 w-32">
+            <button className="btn border-4 rounded-md border-slate-100 m-2 p-2">
               Go record
             </button>
           </Link>

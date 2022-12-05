@@ -40,9 +40,9 @@ export default function Home() {
             ✕
           </div>
 
-          <figure className="w-auto">
-            <img src="logo-light.png" alt="logo light" />
-            <h2 className="text-3xl text-center text-white">Speech Blender</h2>
+          <figure className="flex flex-col items-center">
+            <img className="w-48" src="logo-light.png" alt="logo light" />
+            <h2 className="text-3xl text-center text-white pt-2">Speech Blender</h2>
           </figure>
           <fieldset className="flex justify-center">
             {showRegister && <Register />}
@@ -53,7 +53,7 @@ export default function Home() {
                 <Link>
                   <button
                     onClick={() => setShowRegister((s) => !s)}
-                    className="btn border-4 rounded-md border-slate-100 m-10 p-2 w-32"
+                    className="btn border-4 rounded-md border-slate-100 m-1 p-2"
                   >
                     Sign Up
                   </button>
@@ -61,7 +61,7 @@ export default function Home() {
                 <Link>
                   <button
                     onClick={() => setShowLogin((s) => !s)}
-                    className="btn border-4 rounded-md border-slate-100 m-10 p-2 w-32"
+                    className="btn border-4 rounded-md border-slate-100 m-1 p-2"
                   >
                     Login
                   </button>

@@ -70,7 +70,7 @@ export default function Podcasts() {
     <div>
       <label
         htmlFor="my-modal-3"
-        className="btn border-4 rounded-md border-slate-100 m-2 p-2 w-32"
+        className="btn border-4 rounded-md border-slate-100 m-2 p-2"
       >
         Create New Podcast
       </label>
@@ -85,11 +85,13 @@ export default function Podcasts() {
             ✕
           </label>
           <Form method="post" action={`/profile/${username}/podcasts`}>
-            <input type="text" name="title" />
-            <textarea type="text" name="description"></textarea>
-            <button className="btn btn-primary" type="submit">
+            <div className="flex justify-center space-x-8">
+            <input className="text-center" type="text" placeholder="Title" name="title" />
+            {/* <textarea className="text-center" type="text" placeholder="description" name="description"></textarea> */}
+            <button className="btn border-4 rounded-md border-slate-100 m-2 p-2" type="submit">
               Save
-            </button>
+              </button>
+              </div>
           </Form>
         </div>
       </div>
@@ -102,22 +104,22 @@ export default function Podcasts() {
           <Link to={`/profile/${username}/recorder/${p._id}`}>
             <h2>{p.title}</h2>
             <p>{p.description}</p>
-            <button className="btn border-4 rounded-md border-slate-100 m-2 p-2 w-32">
+            <button className="btn border-4 rounded-md border-slate-100 m-2 p-2">
               Go record
             </button>
           </Link>
           <Link to={`/profile/${username}/users/${p._id}`}>
             <button
-              className="btn border-4 rounded-md border-slate-100 m-2 p-2 w-32"
+              className="btn border-4 rounded-md border-slate-100 m-2 p-2"
               type="submit"
             >
               Members
             </button>
           </Link>
-          <button onClick={handleDelete} id={p._id} className="btn btn-primary">
+          <button onClick={handleDelete} id={p._id} className="btn border-4 rounded-md border-slate-100 m-2 p-2">
             DELETE
           </button>
-          <button className="btn btn-primary" id={p._id} onClick={handleLike}>
+          <button className="btn border-4 rounded-md border-slate-100 m-2 p-2" id={p._id} onClick={handleLike}>
             Like
           </button>
         </div>
