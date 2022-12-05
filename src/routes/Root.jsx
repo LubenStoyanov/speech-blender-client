@@ -20,10 +20,7 @@ export default function Home() {
   return (
     <>
     <div><Navbar /></div>
-    <div className="flex flex-row justify-center">
-      
-      <div className="basis-1/3"></div>
-      <div className="basis-1/2 min-h-[1025rem] bg-inherit ">
+      <div className="bg-inherit ">
         <h1 className="text-5xl text-center text-white pt-20">Welcome to Speech Blender</h1>
         <div className="flex flex-row justify-center m-20">
           <ReactPlayer url='https://www.youtube.com/watch?v=QACJitCQI34&ab_channel=SpeechBlender' />
@@ -39,7 +36,7 @@ export default function Home() {
             ✕
           </div>
           
-          <figure className="w-auto">
+          <figure>
             <img src="logo-light.png" alt="logo light" />
             <h2 className="text-3xl text-center text-white">Speech Blender</h2>
           </figure>
@@ -52,7 +49,7 @@ export default function Home() {
               <Link>
                 <button
                   onClick={() => setShowRegister((s) => !s)}
-                  className="btn border-4 rounded-md border-slate-100 m-10 p-2 w-32"
+                  className="btn border-4 rounded-md border-slate-100 m-1 p-2"
                 >
                   Sign Up
                 </button>
@@ -60,7 +57,7 @@ export default function Home() {
               <Link>
                 <button
                   onClick={() => setShowLogin((s) => !s)}
-                  className="btn border-4 rounded-md border-slate-100 m-10 p-2 w-32"
+                  className="btn border-4 rounded-md border-slate-100 m-1 p-2"
                 >
                   Login
                 </button>
@@ -70,10 +67,7 @@ export default function Home() {
             </fieldset>
         </div>
       </div>
-      
-      <div className="basis-1/3"></div>
       <BottomRegister />
-      </div>
       </>
   );
 }
