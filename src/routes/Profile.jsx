@@ -3,6 +3,7 @@ import { Link, Outlet, useNavigate, useParams } from "react-router-dom";
 import { checkToken } from "../utils";
 import Logout from "./Logout";
 import Navbar from "../components/Navbar";
+import { CiEdit } from "react-icons/ci";
 
 export default function Profile() {
   const { username } = useParams();
@@ -15,16 +16,29 @@ export default function Profile() {
 
   return (
     <>
-      <div>
+      <div className="flex justify-between">
         <Navbar />
-      </div>
-      <div className="m-4">
         <Logout />
-        <div className="avatar flex justify-center">
-          <div className="w-24 rounded">
-            <img src="https://placeimg.com/192/192/people" />
+      </div>
+      <div className="flex flex-col m-4">
+        <label
+          htmlFor="avatar"
+          className="border-1 inline-block p-12 cursor-pointer text-3xl"
+        >
+          <div className="avatar flex justify-center relative">
+            <div className="w-24 rounded-full relative">
+              <img src="/public/avatar_pholder.png" />
+            </div>
+            <CiEdit className="absolute left-[52%] top-[-14px]" />
+            <input
+              className="input-file"
+              type="file"
+              name="avatar"
+              id="avatar"
+              style={{ display: "none" }}
+            />
           </div>
-        </div>
+        </label>
         <h1 className="text-3xl text-center m-4">{username} is in da house!</h1>
         <div className="flex justify-center space-x-4">
           <Link to={`/profile/${username}/favorites`}>

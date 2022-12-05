@@ -163,6 +163,24 @@ export const likePodcast = async (podcastId) => {
   }
 };
 
+export const unlikePodcast = async (podcastId) => {
+  try {
+    const res = await fetch("http://localhost:8080/favorite/unlike", {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ podcastId: podcastId }),
+      mode: "cors",
+      credentials: "include",
+    });
+
+    return res.ok;
+  } catch (error) {
+    console.error(error);
+  }
+};
+
 export const getFavorites = async () => {
   try {
     const res = await fetch(`http://localhost:8080/favorite/all`, {
