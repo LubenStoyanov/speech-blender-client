@@ -103,7 +103,7 @@ export default function UserPodcasts() {
       </div>
 
       {podcasts.map((p) => (
-        <>
+        <div key={p._id}>
           {/* <audio src={p.url} key={p.publicId} controls>
             {p.title}
           </audio> */}
@@ -120,7 +120,7 @@ export default function UserPodcasts() {
           <button className="btn btn-primary" id={p._id} onClick={handleLike}>
             Like
           </button>
-        </>
+        </div>
       ))}
     </div>
   );
