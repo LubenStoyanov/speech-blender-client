@@ -16,7 +16,7 @@ import {
   likePodcast,
 } from "../utils";
 
-export async function loader() {
+export const loader = async () => {
   try {
     const res = await fetch(
       // .get("https://speech-blender-backend-production.up.railway.app/podcast/user")
@@ -34,7 +34,7 @@ export async function loader() {
   } catch (error) {
     console.error(error);
   }
-}
+};
 
 export const action = async ({ request, params }) => {
   const { username } = params;
