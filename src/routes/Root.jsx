@@ -1,4 +1,4 @@
-import logoDark from "../../logo-dark.png";
+// import logoDark from "../../logo-dark.png";
 // const imgUrl = new URL("./img.png", import.meta.url).href;
 
 import React, { useContext } from "react";
@@ -61,8 +61,8 @@ export default function Home() {
           >
             ✕
           </div>
-          <figure>
-            <img src={logoDark} alt="logo dark" />
+          <figure className="w-auto">
+            <img src="logo-light.png" alt="logo light" />
             <h2 className="text-3xl text-center text-white">Speech Blender</h2>
           </figure>
           <fieldset className="flex justify-center">
