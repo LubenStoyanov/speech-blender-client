@@ -88,7 +88,7 @@ export default function Profile() {
             <img src={url?.url || "/avatar_pholder.png"} />
           </div>
           <button onClick={() => setShowModal((s) => true)}>
-            <IconContext.Provider value={{ size: "50px" }}>
+            <IconContext.Provider value={{ size: "30px" }}>
               <CiEdit className="absolute left-[52%] top-[-14px]" />
             </IconContext.Provider>
           </button>
