@@ -58,9 +58,11 @@ export default function Profile() {
   const navigate = useNavigate();
   const [showModal, setShowModal] = useState(false);
   const url = useLoaderData();
+
   (async () => {
     const verification = await checkToken();
     if (!verification) return navigate("/login");
+    // if (!verification) return <Navigate to="/login" />;
   })();
 
   // useEffect(() => {
@@ -70,11 +72,6 @@ export default function Profile() {
   // if (!verification) return <Navigate to="/login" />;
   // })();
   // }, []);
-  (async () => {
-    const verification = await checkToken();
-    if (!verification) return navigate("/login");
-    // if (!verification) return <Navigate to="/login" />;
-  })();
 
   return (
     <>
