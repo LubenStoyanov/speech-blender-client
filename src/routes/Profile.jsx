@@ -141,7 +141,7 @@ export default function Profile() {
                 type="file"
                 name="file"
                 id="avatar"
-                accept="image/png"
+                accept="image/png, image/jpeg"
                 required
                 style={{ display: showModal ? "" : "none" }}
               />
