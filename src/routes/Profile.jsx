@@ -75,7 +75,7 @@ export default function Profile() {
       <div className="flex flex-col m-4">
         <div className="avatar flex justify-center relative">
           <div className="w-24 rounded-full relative">
-            <img src={url?.url || "/public/avatar_pholder.png"} />
+            <img src={url?.url || "/avatar_pholder.png"} />
           </div>
           <button onClick={() => setShowModal((s) => true)}>
             <CiEdit className="absolute left-[52%] top-[-14px]" />
