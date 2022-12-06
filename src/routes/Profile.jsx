@@ -13,6 +13,7 @@ import React, { useEffect } from "react";
 import Logout from "./Logout";
 import Navbar from "../components/Navbar";
 import { CiEdit } from "react-icons/ci";
+import { IconContext } from "react-icons";
 import { useState } from "react";
 
 export const action = async ({ request }) => {
