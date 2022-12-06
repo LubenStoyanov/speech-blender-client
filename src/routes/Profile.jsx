@@ -58,10 +58,11 @@ export default function Profile() {
   })();
 
   // useEffect(() => {
-  //   (async () => {
-  //     const verification = await checkToken();
-  //     if (!verification) return navigate("/login");
-  //   })();
+  // (async () => {
+  // const verification = await checkToken();
+  // if (!verification) return navigate("/login");
+  // if (!verification) return <Navigate to="/login" />;
+  // })();
   // }, []);
 
   return (
