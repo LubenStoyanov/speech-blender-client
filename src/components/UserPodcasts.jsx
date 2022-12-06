@@ -19,8 +19,8 @@ import {
 export const loader = async () => {
   try {
     const res = await fetch(
-      // "https://speech-blender-backend-production.up.railway.app/podcast/user",
-      `${process.env.API_URL}/podcast/user`,
+      "https://speech-blender-backend-production.up.railway.app/podcast/user",
+      // `${process.env.API_URL}/podcast/user`,
       // "http://localhost:8080/podcast/user",
       {
         method: "GET",
