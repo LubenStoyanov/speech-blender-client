@@ -9,7 +9,7 @@ export const loader = async ({ request }) => {
   console.log(query);
   try {
     const res = await fetch(
-      `https://speech-blender-backend-production.up.railway.app/users/${query}`,
+      `${process.env.API_URL}/users/${query}`,
       // `http://localhost:8080/users/${query}`,
       {
         method: "GET",
