@@ -18,7 +18,7 @@ import {
 
 export async function loader() {
   const podcasts = await axios
-    .get("https://speech-blender-backend-production.up.railway.app/podcast/all")
+    .get(`${process.env.API_URL}/podcast/all`)
     // .get("http://localhost:8080/podcast/all")
     .then((response) => response.data);
   // const podcastRec = await podcasts.map(async (p) => {
