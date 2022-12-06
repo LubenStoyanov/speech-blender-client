@@ -71,7 +71,8 @@ const router = createBrowserRouter([
         loader: favoirtesLoader,
       },
       {
-        path: "/profile/:username/podcasts",
+        index: true,
+        // path: "/profile/:username/podcasts",
         element: <Podcasts />,
         loader: podcastLoader,
         action: podcastAction,

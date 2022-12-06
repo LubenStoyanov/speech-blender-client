@@ -37,11 +37,11 @@ export default function Home() {
   };
 
   return (
-    <>
+    <div className="bg-neutral min-h-screen">
       <div>
         <Navbar />
       </div>
-      <div className="bg-inherit md:text-2xl ">
+      <div className="md:text-2xl ">
         <h1 className="text-2xl sm:text-5xl text-center text-white pt-20">
           Welcome to Speech Blender
         </h1>
@@ -50,17 +50,19 @@ export default function Home() {
         </div>
       </div>
       <div className={`modal ${showModal ? "modal-open" : ""}`}>
-        <div className="modal-box relative">
+        <div className="modal-box bg-neutral brightness-200  ">
           <div
             htmlFor="my-modal-3"
-            className="btn btn-sm border-4 absolute right-2 top-2 "
+            className="btn btn-sm  absolute right-2 top-2 "
             onClick={() => setShowModal((s) => !s)}
           >
             ✕
           </div>
           <figure className="flex flex-col items-center">
             <img className="w-48" src="logo-light.png" alt="logo light" />
-            <h2 className="text-3xl text-center text-white pt-2">Speech Blender</h2>
+            <h2 className="text-3xl text-center text-white pt-2">
+              Speech Blender
+            </h2>
           </figure>
           <fieldset className="flex justify-center">
             {showRegister && <Register />}
@@ -71,7 +73,7 @@ export default function Home() {
                 <Link>
                   <button
                     onClick={() => setShowRegister((s) => !s)}
-                    className="btn border-4 rounded-md border-slate-100 m-3 p-2"
+                    className="btn  rounded-md m-3 p-2"
                   >
                     Sign Up
                   </button>
@@ -79,7 +81,7 @@ export default function Home() {
                 <Link>
                   <button
                     onClick={() => setShowLogin((s) => !s)}
-                    className="btn border-4 rounded-md border-slate-100 m-3 p-2"
+                    className="btn rounded-md m-3 p-2"
                   >
                     Login
                   </button>
@@ -100,6 +102,6 @@ export default function Home() {
         ))}
       </div>
       <BottomRegister />
-    </>
+    </div>
   );
 }

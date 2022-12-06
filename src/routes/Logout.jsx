@@ -15,7 +15,10 @@ export default function Logout() {
   return (
     <div className="flex justify-end">
       <Form method="post" action="/logout">
-        <button className="btn border-4 rounded-md border-slate-100 m-2 p-2" type="submit">
+        <button
+          className="btn btn-primary brightness-125 rounded-md  m-2 p-2"
+          type="submit"
+        >
           Logout
         </button>
       </Form>

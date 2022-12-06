@@ -14,6 +14,7 @@ import Logout from "./Logout";
 import Navbar from "../components/Navbar";
 import { CiEdit } from "react-icons/ci";
 import { useState } from "react";
+import { IconContext } from "react-icons";
 
 export const action = async ({ request }) => {
   const formData = await request.formData();
@@ -58,8 +59,8 @@ export default function Profile() {
   })();
 
   return (
-    <>
-      <div className="flex justify-between">
+    <div className="bg-neutral">
+      <div className=" flex justify-between">
         <Navbar />
         <Logout />
       </div>
@@ -69,22 +70,24 @@ export default function Profile() {
             <img src={url?.url || "/public/avatar_pholder.png"} />
           </div>
           <button onClick={() => setShowModal((s) => true)}>
-            <CiEdit className="absolute left-[52%] top-[-14px]" />
+            <IconContext.Provider value={{ color: "white", size: "25px" }}>
+              <CiEdit className="absolute left-[52%] top-[-14px]" />
+            </IconContext.Provider>
           </button>
         </div>
         <h1 className="text-3xl text-center m-4">{username} is in da house!</h1>
         <div className="flex justify-center space-x-4">
           <Link to={`/profile/${username}/favorites`}>
             <button
-              className="btn border-4 rounded-md border-slate-100 m-2 p-2"
+              className="btn btn-primary brightness-125 rounded-md  m-2 p-2"
               type="submit"
             >
               Favorites
             </button>
           </Link>
-          <Link to={`/profile/${username}/podcasts`}>
+          <Link to={`/profile/${username}`}>
             <button
-              className="btn border-4 rounded-md border-slate-100 m-2 p-2"
+              className="btn  btn-primary brightness-125 rounded-md  m-2 p-2"
               type="submit"
             >
               Podcasts
@@ -92,10 +95,10 @@ export default function Profile() {
           </Link>
           <Link to={`/profile/${username}/user-podcasts`}>
             <button
-              className="btn border-4 rounded-md border-slate-100 m-2 p-2"
+              className="btn btn-primary brightness-125  rounded-md  m-2 p-2"
               type="submit"
             >
-              Your Podcasts
+              My Podcasts
             </button>
           </Link>
         </div>
@@ -120,7 +123,7 @@ export default function Profile() {
                 type="file"
                 name="file"
                 id="avatar"
-                accept="image/png"
+                accept="image/png, image/jpeg"
                 required
                 style={{ display: showModal ? "" : "none" }}
               />
@@ -132,6 +135,6 @@ export default function Profile() {
         </div>
         <Outlet />
       </div>
-    </>
+    </div>
   );
 }
