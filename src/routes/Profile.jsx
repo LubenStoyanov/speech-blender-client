@@ -1,4 +1,3 @@
-import React from "react";
 import {
   Link,
   Outlet,
@@ -10,6 +9,7 @@ import {
   redirect,
 } from "react-router-dom";
 import { checkToken, uploadAvatar } from "../utils";
+import React, { useEffect } from "react";
 import Logout from "./Logout";
 import Navbar from "../components/Navbar";
 import { CiEdit } from "react-icons/ci";
@@ -56,6 +56,13 @@ export default function Profile() {
     const verification = await checkToken();
     if (!verification) return navigate("/login");
   })();
+
+  // useEffect(() => {
+  //   (async () => {
+  //     const verification = await checkToken();
+  //     if (!verification) return navigate("/login");
+  //   })();
+  // }, []);
 
   return (
     <>
