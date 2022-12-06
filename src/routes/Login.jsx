@@ -43,7 +43,7 @@ export default function Login() {
             id="password"
             required
           />
-          <button type="submit" className="btn border-4 rounded-md border-slate-100 m-10 p-2 w-32">
+          <button type="submit" className="btn border-4 rounded-md border-slate-100 mt-5 p-2">
             Login
           </button>
         </fieldset>

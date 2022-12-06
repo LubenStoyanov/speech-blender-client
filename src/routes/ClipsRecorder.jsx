@@ -67,23 +67,33 @@ export default function Recorder() {
           readOnly
           hidden
         />
-        <p>{status}</p>
-        <button type="submit">Save</button>
+       
+        
       </Form>
-      <button className="btn btn-info" onClick={startRecording}>
+      <div className="flex justify-center">
+        <button className="btn border-4 rounded-md border-slate-100 m-5 p-2" onClick={startRecording}>
         Start
-      </button>
-      <button className="btn btn-info" onClick={pauseRecording}>
+        </button>
+        <button className="btn border-4 rounded-md border-slate-100 m-5 p-2" onClick={pauseRecording}>
         Pause
-      </button>
-      <button className="btn btn-info" onClick={stopRecording}>
+        </button>
+        <button className="btn border-4 rounded-md border-slate-100 m-5 p-2" onClick={stopRecording}>
         Stop
-      </button>
-      <audio
+        </button>
+      </div>
+      <div className="flex justify-center">
+        <audio
         onEnded={playPodcast}
         src={podcastRecordings.length !== 0 ? podcastRecordings[0].url : ""}
         controls
-      />
+        />
+      </div>
+      <div className="flex justify-center">
+        <button className="btn border-4 rounded-md border-slate-100 mt-5 p-2" type="submit">Save</button>
+      </div>
+      <div className="flex justify-center">
+        <p>{status}</p>
+      </div>  
     </div>
   );
 }

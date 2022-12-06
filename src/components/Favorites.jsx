@@ -27,22 +27,28 @@ export default function Favorites() {
   };
   return (
     <div>
+      <div className="border rounded-md border-slate-100 m-2 p-2">
       {favorites.map((p) => (
         <div key={p._id}>
-          <h2>{p.title}</h2>
-          <p>{p.description}</p>
+          <div className="flex justify-center text-4xl uppercase"><h2>{p.title}</h2>
+            <p>{p.description}</p>
+            </div>
           <Link to={`/profile/${username}/recorder/${p._id}`}>
-            <button className="btn border-4 rounded-md border-slate-100 m-2 p-2 w-32">
+            <div className="flex justify-center">
+            <button className="btn border-4 rounded-md border-slate-100 m-2 p-2">
               Go record
-            </button>
+              </button>
+            </div>
           </Link>
+          <div className="flex justify-center">
           <button
-            className="btn border-4 rounded-md border-slate-100 m-2 p-2 w-32"
+            className="btn border-2 rounded-md border-slate-100 m-2 p-2"
             onClick={handleUnlike}
             id={`${p._id}`}
           >
             Unlike
           </button>
+         </div>
           {/* <button
               onClick={handleDelete}
               id={p._id}
@@ -55,6 +61,7 @@ export default function Favorites() {
             </button> */}
         </div>
       ))}
+      </div>
     </div>
   );
 }

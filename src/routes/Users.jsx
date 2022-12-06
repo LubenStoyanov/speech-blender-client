@@ -42,9 +42,12 @@ export default function Users() {
 
   return (
     <div>
-      <SearchUser />
+      <div className="flex justify-center">
+        <SearchUser />
+      </div>
       {users.map((u) => (
-        <Form key={u._id} method="post">
+        <div className="flex justify-center">
+          <Form key={u._id} method="post">
           <h2>{u.username}</h2>
           <input
             type="text"
@@ -53,10 +56,12 @@ export default function Users() {
             readOnly
             hidden
           />
-          <button className="btn btn-primary" type="submit">
+          
+          <button className="btn border-2 rounded-md border-slate-100 m-3 p-2" type="submit">
             Add
           </button>
         </Form>
+        </div>
       ))}
     </div>
   );
