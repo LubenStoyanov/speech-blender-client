@@ -56,7 +56,7 @@ function Register() {
             minLength={8}
             onInvalid={() => "Please enter minium 8 chracters"}
           />
-          <button type="submit" className="btn border-4 rounded-md border-slate-100 m-1 p-2">
+          <button type="submit" className="btn border-4 rounded-md border-slate-100 mt-5 p-2">
             Sign Up
           </button>
         </fieldset>

@@ -53,7 +53,7 @@ export default function Home() {
                 <Link>
                   <button
                     onClick={() => setShowRegister((s) => !s)}
-                    className="btn border-4 rounded-md border-slate-100 m-1 p-2"
+                    className="btn border-4 rounded-md border-slate-100 m-3 p-2"
                   >
                     Sign Up
                   </button>
@@ -61,7 +61,7 @@ export default function Home() {
                 <Link>
                   <button
                     onClick={() => setShowLogin((s) => !s)}
-                    className="btn border-4 rounded-md border-slate-100 m-1 p-2"
+                    className="btn border-4 rounded-md border-slate-100 m-3 p-2"
                   >
                     Login
                   </button>
