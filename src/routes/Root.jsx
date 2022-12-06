@@ -26,7 +26,7 @@ export default function Home() {
     showRegister,
     setShowRegister,
   } = useContext(ModalContext);
-  const homeFeed = useLoaderData();
+  const homeFeed = useLoaderData() || [];
 
   const playPodcast = (_, i = 1) => {
     console.trace();
