@@ -1,6 +1,3 @@
-// import logoDark from "../../logo-dark.png";
-// const imgUrl = new URL("./img.png", import.meta.url).href;
-
 import React, { useContext } from "react";
 import { Link, useLoaderData } from "react-router-dom";
 import Register from "./Register";
