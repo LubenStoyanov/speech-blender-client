@@ -212,3 +212,32 @@ export const addUser = async (data) => {
     console.error(error);
   }
 };
+
+export const uploadAvatar = async (formData) => {
+  try {
+    const res = await fetch("http://localhost:8080/avatar-image", {
+      method: "POST",
+      body: formData,
+      mode: "cors",
+      credentials: "include",
+    });
+    const avatarLink = res.json();
+    return avatarLink;
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+export const getHomeFeed = async () => {
+  try {
+    const res = await fetch("http://localhost:8080/homeFeed", {
+      method: "GET",
+      mode: "cors",
+      credentials: "include",
+    });
+    const data = await res.json();
+    return data;
+  } catch (error) {
+    console.error(error);
+  }
+};

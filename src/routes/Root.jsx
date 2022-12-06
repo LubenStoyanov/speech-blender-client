@@ -1,11 +1,21 @@
 import React, { useContext } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLoaderData } from "react-router-dom";
 import Register from "./Register";
 import Login from "./Login";
 import Navbar from "../components/Navbar";
 import BottomRegister from "../components/BottomRegister";
 import { ModalContext } from "../context/modal";
 import ReactPlayer from "react-player";
+import { getHomeFeed } from "../utils";
+
+export const loader = async () => {
+  try {
+    const homeFeed = await getHomeFeed();
+    return homeFeed;
+  } catch (error) {
+    console.error(error);
+  }
+};
 
 export default function Home() {
   const {
@@ -16,6 +26,15 @@ export default function Home() {
     showRegister,
     setShowRegister,
   } = useContext(ModalContext);
+  const homeFeed = useLoaderData();
+
+  const playPodcast = (_, i = 1) => {
+    console.trace();
+    if (i === podcastRecordings.length) return;
+    const audio = new Audio(podcastRecordings[i].url);
+    audio.play();
+    audio.addEventListener("ended", () => playPodcast(_, i + 1));
+  };
 
   return (
     <>
@@ -39,7 +58,6 @@ export default function Home() {
           >
             ✕
           </div>
-
           <figure className="flex flex-col items-center">
             <img className="w-48" src="logo-light.png" alt="logo light" />
             <h2 className="text-3xl text-center text-white pt-2">Speech Blender</h2>
@@ -73,6 +91,14 @@ export default function Home() {
       </div>
 
       <div className="basis-1/3"></div>
+      <div className="flex flex-col items-center">
+        {homeFeed.map((p) => (
+          <div key={p._id}>
+            <h2>{p.title}</h2>
+            <audio src={homeFeed[0]} onEnded={playPodcast} controls></audio>
+          </div>
+        ))}
+      </div>
       <BottomRegister />
     </>
   );
