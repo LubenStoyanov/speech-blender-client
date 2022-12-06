@@ -138,11 +138,15 @@ export const getPodcasts = async (podcastId) => {
 
 export const deletePodcast = async (podcastId) => {
   try {
-    await fetch(`http://localhost:8080/podcast/delete/${podcastId}`, {
-      method: "DELETE",
-      mode: "cors",
-      credentials: "include",
-    });
+    // await fetch(`http://localhost:8080/podcast/delete/${podcastId}`, {
+    await fetch(
+      `http://speech-blender-backend-production.up.railway.app/podcast/delete/${podcastId}`,
+      {
+        method: "DELETE",
+        mode: "cors",
+        credentials: "include",
+      }
+    );
   } catch (error) {
     console.error(error);
   }
@@ -150,15 +154,19 @@ export const deletePodcast = async (podcastId) => {
 
 export const likePodcast = async (podcastId) => {
   try {
-    await fetch(`http://localhost:8080/favorite/create-favorite`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      mode: "cors",
-      body: JSON.stringify({ podcastId: podcastId }),
-      credentials: "include",
-    });
+    await fetch(
+      `http://speech-blender-backend-production.up.railway.app/favorite/create-favorite`,
+      {
+        // await fetch(`http://localhost:8080/favorite/create-favorite`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        mode: "cors",
+        body: JSON.stringify({ podcastId: podcastId }),
+        credentials: "include",
+      }
+    );
   } catch (error) {
     console.error(error);
   }
@@ -166,15 +174,19 @@ export const likePodcast = async (podcastId) => {
 
 export const unlikePodcast = async (podcastId) => {
   try {
-    const res = await fetch("http://localhost:8080/favorite/unlike", {
-      method: "PUT",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ podcastId: podcastId }),
-      mode: "cors",
-      credentials: "include",
-    });
+    const res = await fetch(
+      "http://speech-blender-backend-production.up.railway.app/favorite/unlike",
+      {
+        // const res = await fetch("http://localhost:8080/favorite/unlike", {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ podcastId: podcastId }),
+        mode: "cors",
+        credentials: "include",
+      }
+    );
 
     return res.ok;
   } catch (error) {
@@ -184,11 +196,15 @@ export const unlikePodcast = async (podcastId) => {
 
 export const getFavorites = async () => {
   try {
-    const res = await fetch(`http://localhost:8080/favorite/all`, {
-      method: "GET",
-      mode: "cors",
-      credentials: "include",
-    });
+    const res = await fetch(
+      `http://speech-blender-backend-production.up.railway.app/favorite/all`,
+      {
+        // const res = await fetch(`http://localhost:8080/favorite/all`, {
+        method: "GET",
+        mode: "cors",
+        credentials: "include",
+      }
+    );
     const favorites = await res.json();
     console.log("fav utils", favorites);
     return favorites;
@@ -199,15 +215,19 @@ export const getFavorites = async () => {
 
 export const addUser = async (data) => {
   try {
-    const res = await fetch("http://localhost:8080/collaborater/add", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(data),
-      mode: "cors",
-      credentials: "include",
-    });
+    const res = await fetch(
+      "http://speech-blender-backend-production.up.railway.app/collaborater/add",
+      {
+        // const res = await fetch("http://localhost:8080/collaborater/add", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data),
+        mode: "cors",
+        credentials: "include",
+      }
+    );
     return res.ok;
   } catch (error) {
     console.error(error);
@@ -216,12 +236,16 @@ export const addUser = async (data) => {
 
 export const uploadAvatar = async (formData) => {
   try {
-    const res = await fetch("http://localhost:8080/avatar-image", {
-      method: "POST",
-      body: formData,
-      mode: "cors",
-      credentials: "include",
-    });
+    const res = await fetch(
+      "http://speech-blender-backend-production.up.railway.app/avatar-image",
+      {
+        // const res = await fetch("http://localhost:8080/avatar-image", {
+        method: "POST",
+        body: formData,
+        mode: "cors",
+        credentials: "include",
+      }
+    );
     const avatarLink = res.json();
     return avatarLink;
   } catch (error) {
@@ -231,11 +255,15 @@ export const uploadAvatar = async (formData) => {
 
 export const getHomeFeed = async () => {
   try {
-    const res = await fetch("http://localhost:8080/homeFeed", {
-      method: "GET",
-      mode: "cors",
-      credentials: "include",
-    });
+    const res = await fetch(
+      "http://speech-blender-backend-production.up.railway.app/homeFeed",
+      {
+        // const res = await fetch("http://localhost:8080/homeFeed", {
+        method: "GET",
+        mode: "cors",
+        credentials: "include",
+      }
+    );
     const data = await res.json();
     return data;
   } catch (error) {

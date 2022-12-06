@@ -34,11 +34,15 @@ export const action = async ({ request }) => {
 
 export const loader = async () => {
   try {
-    const res = await fetch("http://localhost:8080/avatar-image", {
-      method: "GET",
-      mode: "cors",
-      credentials: "include",
-    });
+    // const res = await fetch("http://localhost:8080/avatar-image", {
+    const res = await fetch(
+      "http://speech-blender-backend-production.up.railway.app/avatar-image",
+      {
+        method: "GET",
+        mode: "cors",
+        credentials: "include",
+      }
+    );
     const url = await res.json();
     console.log(url);
     return url;
