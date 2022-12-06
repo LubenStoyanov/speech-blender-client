@@ -1,3 +1,6 @@
+import logoDark from "../../logo-dark.png";
+// const imgUrl = new URL("./img.png", import.meta.url).href;
+
 import React, { useContext } from "react";
 import { Link, useLoaderData } from "react-router-dom";
 import Register from "./Register";
@@ -58,8 +61,8 @@ export default function Home() {
           >
             ✕
           </div>
-          <figure className="w-auto">
-            <img src="logo-light.png" alt="logo light" />
+          <figure>
+            <img src={logoDark} alt="logo dark" />
             <h2 className="text-3xl text-center text-white">Speech Blender</h2>
           </figure>
           <fieldset className="flex justify-center">
