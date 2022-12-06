@@ -36,7 +36,8 @@ export const loader = async () => {
   try {
     // const res = await fetch("http://localhost:8080/avatar-image", {
     const res = await fetch(
-      "http://speech-blender-backend-production.up.railway.app/avatar-image",
+      // "http://speech-blender-backend-production.up.railway.app/avatar-image",
+      `http://${process.env.API_URL}/avatar-image`,
       {
         method: "GET",
         mode: "cors",
@@ -83,7 +84,9 @@ export default function Profile() {
             <img src={url?.url || "/avatar_pholder.png"} />
           </div>
           <button onClick={() => setShowModal((s) => true)}>
-            <CiEdit className="absolute left-[52%] top-[-14px]" />
+            <IconContext.Provider value={{ size: "50px" }}>
+              <CiEdit className="absolute left-[52%] top-[-14px]" />
+            </IconContext.Provider>
           </button>
         </div>
         <h1 className="text-3xl text-center m-4">{username} is in da house!</h1>
