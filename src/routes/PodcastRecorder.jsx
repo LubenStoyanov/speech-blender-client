@@ -50,13 +50,13 @@ export default function Recorder() {
         <audio src={mediaBlobUrl} controls />
         <button type="submit">Save</button>
       </Form>
-      <button className="btn border-4 rounded-md border-slate-100 mt-5 p-2" onClick={startRecording}>
+      <button className="btn rounded-md  mt-5 p-2" onClick={startRecording}>
         Start
       </button>
-      <button className="btn border-4 rounded-md border-slate-100 mt-5 p-2" onClick={pauseRecording}>
+      <button className="btn  rounded-md  mt-5 p-2" onClick={pauseRecording}>
         Pause
       </button>
-      <button className="btn border-4 rounded-md border-slate-100 mt-5 p-2" onClick={stopRecording}>
+      <button className="btn  rounded-md  mt-5 p-2" onClick={stopRecording}>
         Stop
       </button>
     </div>

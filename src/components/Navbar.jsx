@@ -7,7 +7,7 @@ export default function Navbar() {
   return (
     <div className="navbar">
       <ul className="nav-links">
-        <Link to={username ? `/profile/${username}` : "/"}>
+        <Link to={username ? `/profile/${username}/podcasts` : "/"}>
           <img src="/logo-light.png"></img>
         </Link>
       </ul>

@@ -6,7 +6,7 @@ export default function BottomRegister() {
     useContext(ModalContext);
   return (
     <footer
-      className={`footer justify-end p-4 bg-neutral text-neutral-content fixed bottom-0 ${
+      className={`footer bg-slate-700  justify-end p-4 text-neutral-content fixed bottom-0 ${
         showModal ? "hidden" : ""
       }`}
     >
@@ -17,7 +17,7 @@ export default function BottomRegister() {
             setShowRegister((s) => false);
             setShowModal((s) => true);
           }}
-          className="btn border-4 rounded-md border-slate-100 p-2 w-32"
+          className="btn  rounded-md  p-2 w-32"
         >
           Log in
         </button>
@@ -27,7 +27,7 @@ export default function BottomRegister() {
             setShowLogin((s) => false);
             setShowModal((s) => true);
           }}
-          className="btn border-4 rounded-md border-slate-100 p-2 w-32"
+          className="btn rounded-md  p-2 w-32"
         >
           Sign up
         </button>
