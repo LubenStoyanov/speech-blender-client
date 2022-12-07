@@ -48,19 +48,23 @@ export default function Users() {
       {users.map((u) => (
         <div className="flex justify-center">
           <Form key={u._id} method="post">
-          <h2>{u.username}</h2>
-          <input
-            type="text"
-            name="username"
-            value={`${u.username}`}
-            readOnly
-            hidden
-          />
-          
-          <button className="btn border-2 rounded-md border-slate-100 m-3 p-2" type="submit">
-            Add
-          </button>
-        </Form>
+            <h2>{u.username}</h2>
+            <input
+              type="text"
+              name="username"
+              value={`${u.username}`}
+              readOnly
+              hidden
+            />
+
+            <button
+              className="btn border-2 rounded-md border-slate-100 m-3 p-2"
+              type="submit"
+            >
+              Add
+            </button>
+          </Form>
+          <div className="divider"></div>
         </div>
       ))}
     </div>
