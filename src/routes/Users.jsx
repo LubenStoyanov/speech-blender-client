@@ -1,4 +1,6 @@
 import React from "react";
+import { IconContext } from "react-icons";
+import { IoPersonAddOutline } from "react-icons/io";
 import { Form, useFetcher, useLoaderData } from "react-router-dom";
 import SearchUser from "../components/SearchUser";
 import { addUser } from "../utils";
@@ -62,7 +64,9 @@ export default function Users() {
                 className="btn border-2 rounded-md border-slate-100 m-3 p-2"
                 type="submit"
               >
-                Add
+                <IconContext.Provider value={{ color: "white", size: "30px" }}>
+                  <IoPersonAddOutline />
+                </IconContext.Provider>
               </button>
             </Form>
           </div>
