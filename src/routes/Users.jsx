@@ -50,7 +50,7 @@ export default function Users() {
       {users.map((u) => (
         <>
           <div className="flex justify-center">
-            <Form key={u._id} method="post">
+            <Form className="flex justify-center" key={u._id} method="post">
               <h2>{u.username}</h2>
               <input
                 type="text"
