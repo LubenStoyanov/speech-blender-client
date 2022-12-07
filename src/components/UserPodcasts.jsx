@@ -68,7 +68,7 @@ export default function UserPodcasts() {
     } catch (error) {
       console.error(error);
     }
-    return navigate(`/profile/${username}`);
+    return navigate(`/profile/${username}/podcasts`);
   };
 
   const handleLike = async (e) => {
@@ -119,49 +119,60 @@ export default function UserPodcasts() {
       </div>
 
       {podcasts.map((p) => (
-        <div
-          key={p.publicId}
-          className="flex flex-col items-center  rounded-md  m-2 p-2 w-[80ch]"
-        >
-          <div>
-            <div className="flex justify-center text-xl">
-              <p className="">{p.title}</p>
-            </div>
+        <>
+          <div
+            key={p.publicId}
+            className="flex flex-col items-center  rounded-md  m-2 p-2 w-[80ch]"
+          >
             <div>
-              <audio src={p.url} controls>
-                {p.title}
-              </audio>
+              <div className="flex justify-center">
+                <h2 className="text-xl">{p.title}</h2>
+              </div>
+              <div>
+                <audio src={p.url} controls>
+                  {p.title}
+                </audio>
+              </div>
             </div>
-          </div>
-          <div className="flex ">
-            <div className="text-xl uppercase">
-              <Link to={`/profile/${username}/recorder/${p._id}`}>
-                <button className="btn  rounded-md  m-2 p-2">
-                  <IconContext.Provider value={{ color: "red", size: "25" }}>
+            <div className="flex ">
+              <div className="text-4xl uppercase">
+                <Link to={`/profile/${username}/recorder/${p._id}`}>
+                  <button className="btn  rounded-md  m-2 p-2">
+                    <IconContext.Provider
+                      value={{ color: "white", size: "25px" }}
+                    >
+                      <CiMicrophoneOn />
+                    </IconContext.Provider>
+                    {/* <IconContext.Provider value={{ color: "red", size: "25" }}>
                     <MdOutlineRecordVoiceOver />
+                  </IconContext.Provider> */}
+                  </button>
+                </Link>
+              </div>
+              <Link to={`/profile/${username}/users/${p._id}`}>
+                <button className="btn  rounded-md  m-2 p-2" type="submit">
+                  <IconContext.Provider value={{ color: "white", size: "25" }}>
+                    <BsPeople />
                   </IconContext.Provider>
                 </button>
               </Link>
-            </div>
-            <Link to={`/profile/${username}/users/${p._id}`}>
-              <button className="btn  rounded-md  m-2 p-2" type="submit">
+              <button
+                onClick={handleDelete}
+                className="btn rounded-md  m-2 p-2"
+              >
                 <IconContext.Provider value={{ color: "white", size: "25" }}>
-                  <BsPeople />
+                  <RiDeleteBin6Line id={p._id} />
                 </IconContext.Provider>
               </button>
-            </Link>
-            <button onClick={handleDelete} className="btn rounded-md  m-2 p-2">
-              <IconContext.Provider value={{ color: "white", size: "25" }}>
-                <RiDeleteBin6Line id={p._id} />
-              </IconContext.Provider>
-            </button>
-            <button className="btn  rounded-md  m-2 p-2" onClick={handleLike}>
-              <IconContext.Provider value={{ color: "gold", size: "25" }}>
-                <AiOutlineStar id={p._id} />
-              </IconContext.Provider>
-            </button>
+              <button className="btn  rounded-md  m-2 p-2" onClick={handleLike}>
+                <IconContext.Provider value={{ color: "gold", size: "25" }}>
+                  <AiOutlineStar id={p._id} />
+                </IconContext.Provider>
+              </button>
+            </div>
           </div>
-        </div>
+          <div className="divider"></div>
+        </>
       ))}
     </div>
   );

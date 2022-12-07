@@ -6,7 +6,7 @@ export default function BottomRegister() {
     useContext(ModalContext);
   return (
     <footer
-      className={`footer justify-end p-4 bg-neutral text-neutral-content fixed bottom-0 ${
+      className={`footer bg-slate-700  justify-end p-4 text-neutral-content fixed bottom-0 ${
         showModal ? "hidden" : ""
       }`}
     >

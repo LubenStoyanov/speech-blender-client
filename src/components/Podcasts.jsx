@@ -63,7 +63,7 @@ export default function Podcasts() {
     } catch (error) {
       console.error(error);
     }
-    return navigate(`/profile/${username}`);
+    return navigate(`/profile/${username}/podcasts`);
   };
 
   const handleLike = async (e) => {
@@ -115,11 +115,8 @@ export default function Podcasts() {
       </div>
 
       {podcasts.map((p) => (
-        <>
-          <div
-            key={p.publicId}
-            className="flex flex-col items-center  rounded-md  m-2 p-2 w-[80ch]"
-          >
+        <div key={p.publicId}>
+          <div className="flex flex-col items-center  rounded-md  m-2 p-2 w-[80ch]">
             <div>
               <div className="flex justify-center">
                 <h2 className="text-xl">{p.title}</h2>
@@ -139,9 +136,6 @@ export default function Podcasts() {
                     >
                       <CiMicrophoneOn />
                     </IconContext.Provider>
-                    {/* <IconContext.Provider value={{ color: "red", size: "25" }}>
-                    <MdOutlineRecordVoiceOver />
-                  </IconContext.Provider> */}
                   </button>
                 </Link>
               </div>
@@ -168,7 +162,7 @@ export default function Podcasts() {
             </div>
           </div>
           <div className="divider"></div>
-        </>
+        </div>
       ))}
     </div>
   );

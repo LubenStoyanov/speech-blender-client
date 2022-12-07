@@ -85,7 +85,7 @@ export default function Profile() {
               Favorites
             </button>
           </Link>
-          <Link to={`/profile/${username}`}>
+          <Link to={`/profile/${username}/podcasts`}>
             <button
               className="btn  btn-primary brightness-125 rounded-md  m-2 p-2"
               type="submit"
