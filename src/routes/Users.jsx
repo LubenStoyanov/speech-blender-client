@@ -34,6 +34,7 @@ export const action = async ({ request, params }) => {
     console.log(username, podcastId);
 
     await addUser({ username: username, podcastId: podcastId });
+    return redirect(`/profile/${username}/users/${podcastId}`);
   } catch (error) {
     console.error(error);
   }

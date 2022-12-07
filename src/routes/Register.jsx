@@ -28,7 +28,6 @@ function Register() {
             autoComplete="username"
             id="username"
             required
-            defaultValue="asd"
           />
           <label htmlFor="email">Email</label>
           <input
@@ -37,7 +36,6 @@ function Register() {
             autoComplete="email"
             id="email"
             required
-            defaultValue="asd@asd.com"
           />
           {actionData?.error ? (
             <p style={{ color: "red" }}>{actionData.error}</p>
@@ -49,7 +47,6 @@ function Register() {
             autoComplete="current-password"
             id="password"
             required
-            defaultValue="asd"
             minLength={8}
             onInvalid={() => "Please enter minium 8 chracters"}
           />
