@@ -90,7 +90,7 @@ export default function Profile() {
             </IconContext.Provider>
           </button>
         </div>
-        <h1 className="text-3xl text-center m-4">{username} is in da house!</h1>
+        <h1 className="text-3xl text-white text-center m-4">{username}</h1>
         <div className="flex justify-center space-x-4">
           <Link to={`/profile/${username}/favorites`}>
             <button
