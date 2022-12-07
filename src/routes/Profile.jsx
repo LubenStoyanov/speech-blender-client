@@ -37,7 +37,7 @@ export const loader = async () => {
   try {
     // const res = await fetch("http://localhost:8080/avatar-image", {
     const res = await fetch(
-      "http://speech-blender-backend-production.up.railway.app/avatar-image",
+      "https://speech-blender-backend-production.up.railway.app/avatar-image",
       // `http://${process.env.API_URL}/avatar-image`,
       {
         method: "GET",
