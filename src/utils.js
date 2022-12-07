@@ -264,6 +264,7 @@ export const getHomeFeed = async () => {
         credentials: "include",
       }
     );
+    console.log(res);
     const data = await res.json();
     return data;
   } catch (error) {

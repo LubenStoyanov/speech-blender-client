@@ -20,6 +20,10 @@ export const action = async ({ request }) => {
 
 export default function Login() {
   const error = useActionData();
+  history.pushState(null, null, null);
+  window.addEventListener("popstate", function () {
+    history.pushState(null, null, null);
+  });
   console.log(error);
   return (
     <div className="App">

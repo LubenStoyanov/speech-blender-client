@@ -1,10 +1,21 @@
 import React from "react";
-import { Form, redirect, useNavigate, useParams } from "react-router-dom";
+import { createBrowserHistory } from "history";
+import {
+  BrowserRouter,
+  Form,
+  redirect,
+  useNavigate,
+  useParams,
+} from "react-router-dom";
 import { logout } from "../utils";
 
 export const action = async () => {
   try {
     await logout();
+    history.pushState(null, null, null);
+    window.addEventListener("popstate", function () {
+      history.pushState(null, null, null);
+    });
     return redirect("/login");
   } catch (error) {
     console.error(error);
