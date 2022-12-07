@@ -24,7 +24,7 @@ export default function Login() {
   return (
     <div className="App">
       <Form method="post" action="/login">
-        <fieldset className="flex flex-col justify-center m-5 text-neutral">
+        <fieldset className="flex flex-col justify-center m-5 text-white">
           <label htmlFor="username">Username</label>
           <input
             type="text"

@@ -21,9 +21,7 @@ function Register() {
   return (
     <div className="Root">
       <Form method="post" action="/register">
-        <fieldset
-          className="flex flex-col justify-center m-5"
-        >
+        <fieldset className="flex flex-col justify-center text-white m-5">
           <label htmlFor="username">Username</label>
           <input
             type="text"
@@ -56,12 +54,15 @@ function Register() {
             minLength={8}
             onInvalid={() => "Please enter minium 8 chracters"}
           />
-          <button type="submit" className="btn border-4 rounded-md border-slate-100 mt-5 p-2">
+          <button
+            type="submit"
+            className="btn border-4 rounded-md border-slate-100 mt-5 p-2"
+          >
             Sign Up
           </button>
         </fieldset>
       </Form>
-      </div>
+    </div>
   );
 }
 
