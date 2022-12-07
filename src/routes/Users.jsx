@@ -1,6 +1,6 @@
 import React from "react";
 import { IconContext } from "react-icons";
-import { IoPersonAddOutline } from "react-icons/io";
+import { AiOutlineUsergroupAdd } from "react-icons/ai";
 import { Form, useFetcher, useLoaderData } from "react-router-dom";
 import SearchUser from "../components/SearchUser";
 import { addUser } from "../utils";
@@ -65,7 +65,7 @@ export default function Users() {
                 type="submit"
               >
                 <IconContext.Provider value={{ color: "white", size: "30px" }}>
-                  <IoPersonAddOutline />
+                  <AiOutlineUsergroupAdd />
                 </IconContext.Provider>
               </button>
             </Form>

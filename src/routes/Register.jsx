@@ -16,13 +16,12 @@ export const action = async ({ request }) => {
 };
 
 function Register() {
-  const actionData = useActionData();
-
+  // const actionData = useActionData();
   return (
     <div className="Root">
       <Form method="post" action="/register">
         <fieldset className="flex flex-col justify-center text-white m-5">
-          <label htmlFor="username">Username</label>
+          {/* <label htmlFor="username">Username</label> */}
           <input
             type="text"
             name="username"
