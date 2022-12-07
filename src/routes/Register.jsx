@@ -16,7 +16,7 @@ export const action = async ({ request }) => {
 };
 
 function Register() {
-  // const actionData = useActionData();
+  const actionData = useActionData();
   return (
     <div className="Root">
       <Form method="post" action="/register">
