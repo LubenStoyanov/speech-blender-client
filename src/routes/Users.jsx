@@ -67,7 +67,6 @@ export default function Users() {
             </Form>
           </div>
           <div className="divider text-white"></div>
-          <div className="divider text-white"></div>
         </>
       ))}
     </div>
