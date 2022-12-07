@@ -51,7 +51,7 @@ export default function Users() {
         <>
           <div className="flex justify-center">
             <Form
-              className="flex justify-center align-center"
+              className="flex justify-center items-center"
               key={u._id}
               method="post"
             >
