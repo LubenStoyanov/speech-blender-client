@@ -140,7 +140,7 @@ export const deletePodcast = async (podcastId) => {
   try {
     // await fetch(`http://localhost:8080/podcast/delete/${podcastId}`, {
     await fetch(
-      `http://speech-blender-backend-production.up.railway.app/podcast/delete/${podcastId}`,
+      `https://speech-blender-backend-production.up.railway.app/podcast/delete/${podcastId}`,
       {
         method: "DELETE",
         mode: "cors",
@@ -155,7 +155,7 @@ export const deletePodcast = async (podcastId) => {
 export const likePodcast = async (podcastId) => {
   try {
     await fetch(
-      `http://speech-blender-backend-production.up.railway.app/favorite/create-favorite`,
+      `https://speech-blender-backend-production.up.railway.app/favorite/create-favorite`,
       {
         // await fetch(`http://localhost:8080/favorite/create-favorite`, {
         method: "POST",
@@ -175,7 +175,7 @@ export const likePodcast = async (podcastId) => {
 export const unlikePodcast = async (podcastId) => {
   try {
     const res = await fetch(
-      "http://speech-blender-backend-production.up.railway.app/favorite/unlike",
+      "https://speech-blender-backend-production.up.railway.app/favorite/unlike",
       {
         // const res = await fetch("http://localhost:8080/favorite/unlike", {
         method: "PUT",
@@ -197,7 +197,7 @@ export const unlikePodcast = async (podcastId) => {
 export const getFavorites = async () => {
   try {
     const res = await fetch(
-      `http://speech-blender-backend-production.up.railway.app/favorite/all`,
+      `https://speech-blender-backend-production.up.railway.app/favorite/all`,
       {
         // const res = await fetch(`http://localhost:8080/favorite/all`, {
         method: "GET",
@@ -216,7 +216,7 @@ export const getFavorites = async () => {
 export const addUser = async (data) => {
   try {
     const res = await fetch(
-      "http://speech-blender-backend-production.up.railway.app/collaborater/add",
+      "https://speech-blender-backend-production.up.railway.app/collaborater/add",
       {
         // const res = await fetch("http://localhost:8080/collaborater/add", {
         method: "POST",
@@ -237,7 +237,7 @@ export const addUser = async (data) => {
 export const uploadAvatar = async (formData) => {
   try {
     const res = await fetch(
-      "http://speech-blender-backend-production.up.railway.app/avatar-image",
+      "https://speech-blender-backend-production.up.railway.app/avatar-image",
       {
         // const res = await fetch("http://localhost:8080/avatar-image", {
         method: "POST",
@@ -256,7 +256,7 @@ export const uploadAvatar = async (formData) => {
 export const getHomeFeed = async () => {
   try {
     const res = await fetch(
-      "http://speech-blender-backend-production.up.railway.app/homeFeed",
+      "https://speech-blender-backend-production.up.railway.app/homeFeed",
       {
         // const res = await fetch("http://localhost:8080/homeFeed", {
         method: "GET",
