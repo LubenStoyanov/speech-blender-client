@@ -50,7 +50,7 @@ export default function Home() {
         </div>
       </div>
       <div className={`modal ${showModal ? "modal-open" : ""}`}>
-        <div className="modal-box bg-neutral brightness-200  ">
+        <div className="modal-box bg-neutral   ">
           <div
             htmlFor="my-modal-3"
             className="btn btn-sm  absolute right-2 top-2 "
