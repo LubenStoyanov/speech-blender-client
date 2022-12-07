@@ -22,18 +22,26 @@ import {
   likePodcast,
 } from "../utils";
 
-export async function loader() {
-  console.log("loader");
-  const podcasts = await axios
-    .get(`https://speech-blender-backend-production.up.railway.app/podcast/all`)
-    // .get("http://localhost:8080/podcast/all")
-    .then((response) => response.data);
-  // const podcastRec = await podcasts.map(async (p) => {
-  //   const recordings = await getPodcasts(p._id);
-  //   return { ...p, recordings: recordings };
-  // });
-  return { podcasts };
-}
+export const loader = async () => {
+  try {
+    const res = await fetch(
+      "https://speech-blender-backend-production.up.railway.app/podcast/all",
+      // `${process.env.API_URL}/podcast/user`,
+      // "http://localhost:8080/podcast/user",
+      {
+        method: "GET",
+        mode: "cors",
+        credentials: "include",
+      }
+    );
+
+    const podcasts = await res.json();
+    console.log(podcasts);
+    return { podcasts };
+  } catch (error) {
+    console.error(error);
+  }
+};
 
 export const action = async ({ request, params }) => {
   console.log("action");
