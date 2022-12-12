@@ -1,88 +1,6 @@
-// import * as dotenv from "dotenv";
-// dotenv.config();
 const API_URL = import.meta.env.VITE_API_URL;
-console.log(import.meta.env.VITE_API_URL);
-
-export const checkToken = async () => {
-  try {
-    const res = await fetch(`${API_URL}/profile/asd`, {
-      method: "POST",
-      mode: "cors",
-      credentials: "include",
-    });
-    return res.ok;
-  } catch (error) {
-    console.error(error);
-    return null;
-  }
-};
-
-export const login = async (data) => {
-  try {
-    const res = await fetch(`${API_URL}/login`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      mode: "cors",
-      credentials: "include",
-      body: JSON.stringify(data),
-    });
-    console.log("login", await res.json());
-    return res;
-  } catch (error) {
-    console.error(error);
-  }
-};
-
-export const logout = async () => {
-  console.log("frontend logout");
-  try {
-    const res = await fetch(`${API_URL}/logout`, {
-      method: "POST",
-      mode: "cors",
-      credentials: "include",
-    });
-    return res.ok;
-  } catch (error) {
-    console.error(error);
-  }
-};
-
-export const register = async (data) => {
-  try {
-    const res = await fetch(`${API_URL}/register`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(data),
-      mode: "cors",
-    });
-    return res;
-  } catch (error) {
-    console.error(error);
-  }
-};
-
-export const uploadClip = async (data) => {
-  try {
-    const res = await fetch(`${API_URL}/uploadClip`, {
-      method: "POST",
-      body: data,
-      mode: "cors",
-      credentials: "include",
-    });
-    const linkArray = await res.json();
-    console.log(linkArray);
-    return linkArray;
-  } catch (error) {
-    console.error(error);
-  }
-};
 
 export const createPodcast = async (data) => {
-  console.log(data);
   try {
     const res = await fetch(`${API_URL}/podcast/create-podcast`, {
       method: "POST",
@@ -94,7 +12,6 @@ export const createPodcast = async (data) => {
       credentials: "include",
     });
     const podcastId = await res.json();
-    console.log(podcastId);
     return podcastId;
   } catch (error) {
     console.error(error);
@@ -110,7 +27,6 @@ export const getPodcastsAll = async () => {
     });
 
     const podcasts = await res.json();
-    console.log(podcasts);
     return podcasts;
   } catch (error) {
     console.error(error);
@@ -182,7 +98,6 @@ export const getFavorites = async () => {
       credentials: "include",
     });
     const favorites = await res.json();
-    console.log("fav utils", favorites);
     return favorites;
   } catch (error) {
     console.error(error);
@@ -191,15 +106,11 @@ export const getFavorites = async () => {
 
 export const findUser = async (query) => {
   try {
-    const res = await fetch(
-      `https://speech-blender-backend-production.up.railway.app/users/${query}`,
-      // `http://localhost:8080/users/${query}`,
-      {
-        method: "GET",
-        mode: "cors",
-        credentials: "include",
-      }
-    );
+    const res = await fetch(`${API_URL}/users/${query}`, {
+      method: "GET",
+      mode: "cors",
+      credentials: "include",
+    });
     const users = await res.json();
     return users;
   } catch (error) {
@@ -224,21 +135,6 @@ export const addUser = async (data) => {
   }
 };
 
-export const uploadAvatar = async (formData) => {
-  try {
-    const res = await fetch(`${API_URL}/avatar-image`, {
-      method: "POST",
-      body: formData,
-      mode: "cors",
-      credentials: "include",
-    });
-    const avatarLink = res.json();
-    return avatarLink;
-  } catch (error) {
-    console.error(error);
-  }
-};
-
 export const getAvatarImage = async () => {
   try {
     const res = await fetch(`${API_URL}/avatar-image`, {
@@ -247,7 +143,6 @@ export const getAvatarImage = async () => {
       credentials: "include",
     });
     const url = await res.json();
-    console.log(url);
     return url;
   } catch (error) {
     console.error(error);
@@ -261,7 +156,6 @@ export const getHomeFeed = async () => {
       mode: "cors",
       credentials: "include",
     });
-    console.log(res);
     const data = await res.json();
     return data;
   } catch (error) {

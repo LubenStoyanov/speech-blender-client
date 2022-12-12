@@ -6,7 +6,9 @@ import {
   Form,
   useLoaderData,
 } from "react-router-dom";
-import { checkToken, getAvatarImage, uploadAvatar } from "../utils";
+import { getAvatarImage } from "../utils";
+import { uploadAvatar } from "../upload";
+import { checkToken } from "../auth";
 import React from "react";
 import Logout from "./Logout";
 import Navbar from "../components/Navbar";
@@ -19,13 +21,9 @@ export const action = async ({ request }) => {
   const newFormData = new FormData();
   const avatarFile = formData.get("file");
   newFormData.append("file", avatarFile);
-  console.log("avatar", avatarFile.name);
-  const data = Object.fromEntries(formData);
-  console.log(data.file);
   try {
-    const avatarUrl = await uploadAvatar(newFormData);
-    console.log(avatarUrl);
-    return avatarUrl;
+    const url = await uploadAvatar(newFormData);
+    return { url };
   } catch (error) {
     console.error(error);
   }
@@ -33,29 +31,21 @@ export const action = async ({ request }) => {
 
 export const loader = async () => {
   const url = await getAvatarImage();
-  console.log(url);
+  url;
   return url;
 };
 
 export default function Profile() {
+  const { url } = useLoaderData() || "";
+  url;
   const { username } = useParams();
   const navigate = useNavigate();
   const [showModal, setShowModal] = useState(false);
-  const url = useLoaderData();
 
   (async () => {
     const verification = await checkToken();
     if (!verification) return navigate("/login");
-    // if (!verification) return <Navigate to="/login" />;
   })();
-
-  // useEffect(() => {
-  // (async () => {
-  // const verification = await checkToken();
-  // if (!verification) return navigate("/login");
-  // if (!verification) return <Navigate to="/login" />;
-  // })();
-  // }, []);
 
   return (
     <div className="bg-neutral">
@@ -66,7 +56,7 @@ export default function Profile() {
       <div className="flex flex-col m-4">
         <div className="avatar flex justify-center relative">
           <div className="w-24 rounded-full relative">
-            <img src={url?.url || "/avatar_pholder.png"} />
+            <img src={url || "/avatar_pholder.png"} />
           </div>
           <button onClick={() => setShowModal((s) => true)}>
             <IconContext.Provider value={{ color: "white", size: "25px" }}>

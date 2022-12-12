@@ -95,9 +95,9 @@ const router = createBrowserRouter([
 ReactDOM.createRoot(document.getElementById("root")).render(
   // <React.StrictMode>
   <ModalContextProvider>
-    <AWSContextProvider>
-      <RouterProvider router={router} />
-    </AWSContextProvider>
+    {/* <AWSContextProvider> */}
+    <RouterProvider router={router} />
+    {/* </AWSContextProvider> */}
   </ModalContextProvider>
   // </React.StrictMode>
 );

@@ -1,13 +1,6 @@
 import React from "react";
-import { createBrowserHistory } from "history";
-import {
-  BrowserRouter,
-  Form,
-  redirect,
-  useNavigate,
-  useParams,
-} from "react-router-dom";
-import { logout } from "../utils";
+import { Form, redirect } from "react-router-dom";
+import { logout } from "../auth";
 
 export const action = async () => {
   try {

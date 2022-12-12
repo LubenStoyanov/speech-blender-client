@@ -1,5 +1,5 @@
 import { Form, json, redirect, useActionData } from "react-router-dom";
-import { register } from "../utils";
+import { register } from "../auth";
 
 export const action = async ({ request }) => {
   try {

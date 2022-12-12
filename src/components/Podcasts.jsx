@@ -25,13 +25,11 @@ export const loader = async () => {
 };
 
 export const action = async ({ request, params }) => {
-  console.log("action");
   const { username } = params;
   try {
     const formData = await request.formData();
     const data = Object.fromEntries(formData);
     const podcastId = await createPodcast(data);
-    console.log("podID", podcastId);
     return redirect(`/profile/${username}/recorder/${podcastId.podcastId}`);
   } catch (error) {
     console.error(error);
@@ -39,13 +37,11 @@ export const action = async ({ request, params }) => {
 };
 
 export default function Podcasts() {
+  const { podcasts } = useLoaderData() || [];
   const { username } = useParams();
-  const { podcasts } = useLoaderData();
   const navigate = useNavigate();
-  console.log(podcasts);
 
   const handleDelete = async (e) => {
-    console.log(e.target.id);
     const podcastId = e.target.id;
     try {
       await deletePodcast(podcastId);
@@ -57,7 +53,6 @@ export default function Podcasts() {
 
   const handleLike = async (e) => {
     const podcastId = e.target.id;
-    console.log(e);
     try {
       await likePodcast(podcastId);
     } catch (error) {
@@ -116,12 +111,12 @@ export default function Podcasts() {
                 </audio>
               </div>
             </div>
-            <div className="flex ">
+            <div className="flex">
               <div className="text-4xl uppercase">
                 <Link to={`/profile/${username}/recorder/${p._id}`}>
-                  <button className="btn  rounded-md  m-2 p-2">
+                  <button className="btn rounded-md  m-2 p-2">
                     <IconContext.Provider
-                      value={{ color: "white", size: "25px" }}
+                      value={{ color: "white", size: "25" }}
                     >
                       <CiMicrophoneOn />
                     </IconContext.Provider>

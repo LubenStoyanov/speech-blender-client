@@ -1,7 +1,8 @@
 import React from "react";
 import { useReactMediaRecorder } from "react-media-recorder";
 import { Form, useLoaderData } from "react-router-dom";
-import { uploadClip, getPodcasts } from "../utils";
+import { getPodcasts } from "../utils";
+import { uploadClip } from "../upload";
 import { BsRecord2 } from "react-icons/bs";
 import { BsStopBtn } from "react-icons/bs";
 import { BiSave } from "react-icons/bi";
@@ -34,7 +35,7 @@ export const loader = async ({ params }) => {
     const { podcastId } = params;
     const res = await getPodcasts(podcastId);
     const podcastRecordings = await res.json();
-    console.log("loader", podcastRecordings);
+    "loader", podcastRecordings;
     return podcastRecordings;
   } catch (error) {
     console.error(error);
@@ -42,16 +43,11 @@ export const loader = async ({ params }) => {
 };
 
 export default function Recorder() {
-  const {
-    status,
-    startRecording,
-    stopRecording,
-    pauseRecording,
-    mediaBlobUrl,
-  } = useReactMediaRecorder({ audio: "audio/mp3" });
+  const { status, startRecording, stopRecording, mediaBlobUrl } =
+    useReactMediaRecorder({ audio: "audio/mp3" });
 
   const podcastRecordings = useLoaderData() || [];
-  console.log("podcastRecordings", podcastRecordings);
+  "podcastRecordings", podcastRecordings;
 
   const playPodcast = (_, i = 1) => {
     console.trace();

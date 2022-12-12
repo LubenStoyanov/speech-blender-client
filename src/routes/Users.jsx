@@ -8,7 +8,7 @@ import { addUser, findUser } from "../utils";
 export const loader = async ({ request }) => {
   const url = new URL(request.url);
   const query = url.searchParams.get("query") || "all";
-  console.log(query);
+  query;
 
   const users = await findUser(query);
 
@@ -20,7 +20,7 @@ export const action = async ({ request, params }) => {
   const formData = await request.formData();
   const username = formData.get("username");
   try {
-    console.log(username, podcastId);
+    username, podcastId;
 
     await addUser({ username: username, podcastId: podcastId });
     return redirect(`/profile/${username}/users/${podcastId}`);

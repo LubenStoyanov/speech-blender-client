@@ -1,12 +1,10 @@
-import React, { useEffect } from "react";
-import axios from "axios";
+import React from "react";
 import {
   useLoaderData,
   Link,
   useParams,
   Form,
   redirect,
-  useFetcher,
   useNavigate,
 } from "react-router-dom";
 import {
@@ -15,7 +13,6 @@ import {
   deletePodcast,
   likePodcast,
 } from "../utils";
-import { MdOutlineRecordVoiceOver } from "react-icons/md";
 import { BsPeople } from "react-icons/bs";
 import { RiDeleteBin6Line } from "react-icons/ri";
 import { AiOutlineStar } from "react-icons/ai";
@@ -24,7 +21,6 @@ import { IconContext } from "react-icons";
 
 export const loader = async () => {
   const podcasts = await getPodcastsAll();
-  console.log(podcasts);
   return { podcasts };
 };
 
@@ -42,12 +38,11 @@ export const action = async ({ request, params }) => {
 };
 
 export default function UserPodcasts() {
+  const { podcasts } = useLoaderData() || [];
   const { username } = useParams();
-  const { podcasts } = useLoaderData();
   const navigate = useNavigate();
 
   const handleDelete = async (e) => {
-    console.log(e.target.id);
     const podcastId = e.target.id;
     try {
       await deletePodcast(podcastId);
@@ -105,11 +100,8 @@ export default function UserPodcasts() {
       </div>
 
       {podcasts.map((p) => (
-        <>
-          <div
-            key={p.publicId}
-            className="flex flex-col items-center  rounded-md  m-2 p-2 w-[80ch]"
-          >
+        <div key={p._id}>
+          <div className="flex flex-col items-center  rounded-md  m-2 p-2 w-[80ch]">
             <div>
               <div className="flex justify-center">
                 <h2 className="text-xl">{p.title}</h2>
@@ -125,13 +117,10 @@ export default function UserPodcasts() {
                 <Link to={`/profile/${username}/recorder/${p._id}`}>
                   <button className="btn  rounded-md  m-2 p-2">
                     <IconContext.Provider
-                      value={{ color: "white", size: "25px" }}
+                      value={{ color: "white", size: "25" }}
                     >
                       <CiMicrophoneOn />
                     </IconContext.Provider>
-                    {/* <IconContext.Provider value={{ color: "red", size: "25" }}>
-                    <MdOutlineRecordVoiceOver />
-                  </IconContext.Provider> */}
                   </button>
                 </Link>
               </div>
@@ -158,7 +147,7 @@ export default function UserPodcasts() {
             </div>
           </div>
           <div className="divider"></div>
-        </>
+        </div>
       ))}
     </div>
   );

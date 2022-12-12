@@ -1,6 +1,6 @@
 import React from "react";
 import { Form, json, redirect, useActionData } from "react-router-dom";
-import { login } from "../utils";
+import { login } from "../auth";
 
 export const action = async ({ request }) => {
   try {
@@ -21,7 +21,7 @@ export const action = async ({ request }) => {
 export default function Login() {
   const error = useActionData();
 
-  console.log(error);
+  error;
   return (
     <div className="App">
       <Form method="post" action="/login">
