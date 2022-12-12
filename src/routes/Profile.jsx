@@ -4,12 +4,10 @@ import {
   useNavigate,
   useParams,
   Form,
-  useActionData,
   useLoaderData,
-  redirect,
 } from "react-router-dom";
-import { checkToken, uploadAvatar } from "../utils";
-import React, { useEffect } from "react";
+import { checkToken, getAvatarImage, uploadAvatar } from "../utils";
+import React from "react";
 import Logout from "./Logout";
 import Navbar from "../components/Navbar";
 import { CiEdit } from "react-icons/ci";
@@ -34,23 +32,9 @@ export const action = async ({ request }) => {
 };
 
 export const loader = async () => {
-  try {
-    // const res = await fetch("http://localhost:8080/avatar-image", {
-    const res = await fetch(
-      "https://speech-blender-backend-production.up.railway.app/avatar-image",
-      // `http://${process.env.API_URL}/avatar-image`,
-      {
-        method: "GET",
-        mode: "cors",
-        credentials: "include",
-      }
-    );
-    const url = await res.json();
-    console.log(url);
-    return url;
-  } catch (error) {
-    console.error(error);
-  }
+  const url = await getAvatarImage();
+  console.log(url);
+  return url;
 };
 
 export default function Profile() {

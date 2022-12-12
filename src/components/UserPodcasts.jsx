@@ -11,7 +11,7 @@ import {
 } from "react-router-dom";
 import {
   createPodcast,
-  getPodcasts,
+  getPodcastsAll,
   deletePodcast,
   likePodcast,
 } from "../utils";
@@ -23,24 +23,9 @@ import { CiMicrophoneOn } from "react-icons/ci";
 import { IconContext } from "react-icons";
 
 export const loader = async () => {
-  try {
-    const res = await fetch(
-      "https://speech-blender-backend-production.up.railway.app/podcast/user",
-      // `${process.env.API_URL}/podcast/user`,
-      // "http://localhost:8080/podcast/user",
-      {
-        method: "GET",
-        mode: "cors",
-        credentials: "include",
-      }
-    );
-
-    const podcasts = await res.json();
-    console.log(podcasts);
-    return { podcasts };
-  } catch (error) {
-    console.error(error);
-  }
+  const podcasts = await getPodcastsAll();
+  console.log(podcasts);
+  return { podcasts };
 };
 
 export const action = async ({ request, params }) => {

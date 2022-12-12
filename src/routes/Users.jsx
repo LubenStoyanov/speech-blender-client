@@ -1,29 +1,18 @@
 import React from "react";
 import { IconContext } from "react-icons";
 import { AiOutlineUsergroupAdd } from "react-icons/ai";
-import { Form, useFetcher, useLoaderData } from "react-router-dom";
+import { Form, useLoaderData } from "react-router-dom";
 import SearchUser from "../components/SearchUser";
-import { addUser } from "../utils";
+import { addUser, findUser } from "../utils";
 
 export const loader = async ({ request }) => {
   const url = new URL(request.url);
   const query = url.searchParams.get("query") || "all";
   console.log(query);
-  try {
-    const res = await fetch(
-      `https://speech-blender-backend-production.up.railway.app/users/${query}`,
-      // `http://localhost:8080/users/${query}`,
-      {
-        method: "GET",
-        mode: "cors",
-        credentials: "include",
-      }
-    );
-    const users = await res.json();
-    return { users };
-  } catch (error) {
-    console.error(error);
-  }
+
+  const users = await findUser(query);
+
+  return { users };
 };
 
 export const action = async ({ request, params }) => {

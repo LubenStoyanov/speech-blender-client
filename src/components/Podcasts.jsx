@@ -1,6 +1,4 @@
-import React, { useEffect } from "react";
-import axios from "axios";
-import { MdOutlineRecordVoiceOver } from "react-icons/md";
+import React from "react";
 import { BsPeople } from "react-icons/bs";
 import { RiDeleteBin6Line } from "react-icons/ri";
 import { AiOutlineStar } from "react-icons/ai";
@@ -12,35 +10,18 @@ import {
   useParams,
   Form,
   redirect,
-  useFetcher,
   useNavigate,
 } from "react-router-dom";
 import {
   createPodcast,
-  getPodcasts,
+  getPodcastsAll,
   deletePodcast,
   likePodcast,
 } from "../utils";
 
 export const loader = async () => {
-  try {
-    const res = await fetch(
-      "https://speech-blender-backend-production.up.railway.app/podcast/all",
-      // `${process.env.API_URL}/podcast/user`,
-      // "http://localhost:8080/podcast/user",
-      {
-        method: "GET",
-        mode: "cors",
-        credentials: "include",
-      }
-    );
-
-    const podcasts = await res.json();
-    console.log(podcasts);
-    return { podcasts };
-  } catch (error) {
-    console.error(error);
-  }
+  const podcasts = await getPodcastsAll();
+  return { podcasts };
 };
 
 export const action = async ({ request, params }) => {
